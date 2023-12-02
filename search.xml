@@ -700,6 +700,27 @@
       </tags>
   </entry>
   <entry>
+    <title>docker可视化管理——portainer</title>
+    <url>/posts/3f8648d6/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/portainer </span><br><span class="line">  </span><br><span class="line">cd /root/data/docker_data/portainer</span><br><span class="line"></span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.9&#x27;</span><br><span class="line">services:</span><br><span class="line">    portainer-ce:</span><br><span class="line">        image: &#x27;portainer/portainer-ce:latest&#x27;</span><br><span class="line">        volumes:</span><br><span class="line">            - &#x27;/root/data/docker_data/portainer/data:/data&#x27;</span><br><span class="line">            - &#x27;/var/run/docker.sock:/var/run/docker.sock&#x27;</span><br><span class="line">        restart: always</span><br><span class="line">        container_name: portainer</span><br><span class="line">        ports:</span><br><span class="line">            - &#x27;8080:9443&#x27;  # 左边随便改</span><br><span class="line">            - &#x27;8000:8000&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>可视化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>整理一些常用的脚本</title>
     <url>/posts/91208508/</url>
     <content><![CDATA[<h2 id="更新列表"><a href="#更新列表" class="headerlink" title="更新列表"></a>更新列表</h2><p>2023-0525 检测是否可以访问ChatGPT<a href="https://iwanlab.com/tag/%e8%84%9a%e6%9c%ac/" title="脚本">脚本</a> <a href="https://github.com/moeakwak/chatgpt-web-share/wiki/%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97">来源</a></p>
@@ -944,27 +965,6 @@
       <tags>
         <tag>docker</tag>
         <tag>脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker可视化管理——portainer</title>
-    <url>/posts/3f8648d6/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/portainer </span><br><span class="line">  </span><br><span class="line">cd /root/data/docker_data/portainer</span><br><span class="line"></span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.9&#x27;</span><br><span class="line">services:</span><br><span class="line">    portainer-ce:</span><br><span class="line">        image: &#x27;portainer/portainer-ce:latest&#x27;</span><br><span class="line">        volumes:</span><br><span class="line">            - &#x27;/root/data/docker_data/portainer/data:/data&#x27;</span><br><span class="line">            - &#x27;/var/run/docker.sock:/var/run/docker.sock&#x27;</span><br><span class="line">        restart: always</span><br><span class="line">        container_name: portainer</span><br><span class="line">        ports:</span><br><span class="line">            - &#x27;8080:9443&#x27;  # 左边随便改</span><br><span class="line">            - &#x27;8000:8000&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>可视化</tag>
       </tags>
   </entry>
 </search>
