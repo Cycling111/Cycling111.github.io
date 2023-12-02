@@ -329,6 +329,90 @@
       </tags>
   </entry>
   <entry>
+    <title>Wiki.js搭建</title>
+    <url>/posts/6b5f11fd/</url>
+    <content><![CDATA[<p>&#x3D;&#x3D;转载，仅供个人学习！！！&#x3D;&#x3D;</p>
+<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h2><p>今天，给大家介绍一个更牛逼的Wiki文档项目——Wiki.js。它功能更加强大，扩展性更强，也更加美观，甚至可以当作一个开源项目的文档系统（比如之前Halo博客的官方文档），支持多人协作，用了Wiki.js，从此，编写文档成为一种乐趣！</p>
+<p>可以自建的开源项目（GitHub 15.7k star）</p>
+<p>支持多平台部署（Docker、Heroku、Linux、macOS、Windows）</p>
+<ul>
+<li><p>支持多用户</p>
+</li>
+<li><p>易部署，易管理（Docker一下即可）</p>
+</li>
+<li><p>权限管理功能丰富</p>
+</li>
+<li><p>支持外部存储</p>
+</li>
+<li><p>性能好（基于Node.js）</p>
+</li>
+<li><p>搜索功能强大，支持全局、按关键字搜索</p>
+</li>
+<li><p>支持标签功能，可按标签浏览</p>
+</li>
+<li><p>简洁的web页面</p>
+</li>
+<li><p>支持多语言，支持中文</p>
+</li>
+<li><p>拥有多种编辑器，目前有code（可编写html页面），markdown（在编辑页面可看到页面效果），visual editor（功能强大的文本编辑器，所见即所得）</p>
+</li>
+<li><ol>
+<li>团队维护更新积极</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-项目展示"><a href="#2-项目展示" class="headerlink" title="2. 项目展示"></a>2. 项目展示</h2><p>GitHub原项目地址：<a href="https://github.com/Requarks/wiki">https://github.com/Requarks/wiki</a></p>
+<p>官网地址：<a href="https://js.wiki/">https://js.wiki/</a></p>
+<p>官方文档地址：<a href="https://docs.requarks.io/">https://docs.requarks.io/</a></p>
+<p>本教程用的镜像：<a href="https://hub.docker.com/r/linuxserver/wikijs">https://hub.docker.com/r/linuxserver/wikijs</a></p>
+<p>Demo:<a href="https://docs.requarks.io/">https://docs.requarks.io/</a></p>
+<h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3. 搭建环境"></a>3. 搭建环境</h2><p>系统：Debian 10（DD脚本 非必需DD用原来的系统也OK）</p>
+<p>域名一枚，并做好解析到服务器上</p>
+<p>安装好Docker、Docker-compose（相关脚本）</p>
+<p>安装好Nginx Proxy Manager（相关教程）</p>
+<h2 id="4-搭建方式"><a href="#4-搭建方式" class="headerlink" title="4. 搭建方式"></a>4. 搭建方式</h2><h3 id="4-1-搭建"><a href="#4-1-搭建" class="headerlink" title="4.1 搭建"></a>4.1 搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i # 切换到root用户</span><br><span class="line"></span><br><span class="line">apt update -y # 升级packages</span><br><span class="line"></span><br><span class="line">	apt install wget curl sudo vim git # Debian系统比较干净，安装常用的软件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>创建一下安装的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wikijs</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/wikijs</span><br><span class="line"></span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>docker-compose.yml填入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;2.1&quot;</span><br><span class="line">services:</span><br><span class="line">  wikijs:</span><br><span class="line">    image: lscr.io/linuxserver/wikijs</span><br><span class="line">    container_name: wikijs</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=1000        # 如何查看当前用户的PUID和PGID，直接命令行输入id就行</span><br><span class="line">      - PGID=1000</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wikijs/config:/config  # 配置文件映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">      - /root/data/docker_data/wikijs/data:/data  # 数据映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">    ports:</span><br><span class="line">      - 9630:3000   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>没问题的话，ctrl+x退出，按y保存，enter确认。</p>
+<p>然后运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>访问：&#x3D;&#x3D;http:服务ip:8080 即可。&#x3D;&#x3D;</p>
+<hr>
+<p>注意：</p>
+<p>1、不知道服务器IP，可以直接在命令行输入：curl <a href="http://ip.sb/">ip.sb</a>，会显示当前服务器的IP。</p>
+<p>2、遇到访问不了的情况，请在宝塔面板的防火墙和服务商的后台防火墙里打开对应端口。</p>
+<hr>
+<h3 id="4-2-更新"><a href="#4-2-更新" class="headerlink" title="4.2 更新"></a>4.2 更新</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp -r /root/data/docker_data/wikijs /root/data/docker_data/wikijs.archive # 万事先备份，以防万一</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/wikijs # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose pull # 拉取最新的镜像</span><br><span class="line"></span><br><span class="line">docker-compose up -d # 重新更新当前镜像</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+</blockquote>
+<p>利用Docker-compose搭建的应用，更新非常容易～</p>
+<hr>
+<h3 id="4-3-卸载"><a href="#4-3-卸载" class="headerlink" title="4.3 卸载"></a>4.3 卸载</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wikijs # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wikijs # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
+
+<p>此时，执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+
+<p>可以看到三个文件夹，config、 data、 docker-compose.yml</p>
+<hr>
+<p>如果想要删除配置文件和数据，重新搭建的话，执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf config/</span><br><span class="line"></span><br><span class="line">rm -rf data/</span><br></pre></td></tr></table></figure>
+
+<p>如果想要全部删除的话，执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd .. # 退回到/root/data/docker_data目录</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wikijs # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Typecho博客搭建</title>
     <url>/posts/368776e6/</url>
     <content><![CDATA[<p>&#x3D;&#x3D;（转载，仅供个人学习使用）！！&#x3D;&#x3D;！<strong>出处：</strong><a href="https://iwanlab.com/docker-compose-install-typecho/"><strong>https://iwanlab.com/docker-compose-install-typecho/</strong></a></p>
@@ -422,85 +506,16 @@
       </tags>
   </entry>
   <entry>
-    <title>Wiki.js搭建</title>
-    <url>/posts/6b5f11fd/</url>
-    <content><![CDATA[<p>&#x3D;&#x3D;转载，仅供个人学习！！！&#x3D;&#x3D;</p>
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h2><p>今天，给大家介绍一个更牛逼的Wiki文档项目——Wiki.js。它功能更加强大，扩展性更强，也更加美观，甚至可以当作一个开源项目的文档系统（比如之前Halo博客的官方文档），支持多人协作，用了Wiki.js，从此，编写文档成为一种乐趣！</p>
-<p>可以自建的开源项目（GitHub 15.7k star）</p>
-<p>支持多平台部署（Docker、Heroku、Linux、macOS、Windows）</p>
-<ul>
-<li><p>支持多用户</p>
-</li>
-<li><p>易部署，易管理（Docker一下即可）</p>
-</li>
-<li><p>权限管理功能丰富</p>
-</li>
-<li><p>支持外部存储</p>
-</li>
-<li><p>性能好（基于Node.js）</p>
-</li>
-<li><p>搜索功能强大，支持全局、按关键字搜索</p>
-</li>
-<li><p>支持标签功能，可按标签浏览</p>
-</li>
-<li><p>简洁的web页面</p>
-</li>
-<li><p>支持多语言，支持中文</p>
-</li>
-<li><p>拥有多种编辑器，目前有code（可编写html页面），markdown（在编辑页面可看到页面效果），visual editor（功能强大的文本编辑器，所见即所得）</p>
-</li>
-<li><ol>
-<li>团队维护更新积极</li>
-</ol>
-</li>
-</ul>
-<h2 id="2-项目展示"><a href="#2-项目展示" class="headerlink" title="2. 项目展示"></a>2. 项目展示</h2><p>GitHub原项目地址：<a href="https://github.com/Requarks/wiki">https://github.com/Requarks/wiki</a></p>
-<p>官网地址：<a href="https://js.wiki/">https://js.wiki/</a></p>
-<p>官方文档地址：<a href="https://docs.requarks.io/">https://docs.requarks.io/</a></p>
-<p>本教程用的镜像：<a href="https://hub.docker.com/r/linuxserver/wikijs">https://hub.docker.com/r/linuxserver/wikijs</a></p>
-<p>Demo:<a href="https://docs.requarks.io/">https://docs.requarks.io/</a></p>
-<h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3. 搭建环境"></a>3. 搭建环境</h2><p>系统：Debian 10（DD脚本 非必需DD用原来的系统也OK）</p>
-<p>域名一枚，并做好解析到服务器上</p>
-<p>安装好Docker、Docker-compose（相关脚本）</p>
-<p>安装好Nginx Proxy Manager（相关教程）</p>
-<h2 id="4-搭建方式"><a href="#4-搭建方式" class="headerlink" title="4. 搭建方式"></a>4. 搭建方式</h2><h3 id="4-1-搭建"><a href="#4-1-搭建" class="headerlink" title="4.1 搭建"></a>4.1 搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i # 切换到root用户</span><br><span class="line"></span><br><span class="line">apt update -y # 升级packages</span><br><span class="line"></span><br><span class="line">	apt install wget curl sudo vim git # Debian系统比较干净，安装常用的软件</span><br></pre></td></tr></table></figure>
+    <title>nextcloud搭建</title>
+    <url>/posts/8093261a/</url>
+    <content><![CDATA[<p>创建一下安装的目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>创建一下安装的目录：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wikijs</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/wikijs</span><br><span class="line"></span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
 
-<p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;2.1&quot;</span><br><span class="line">services:</span><br><span class="line">  wikijs:</span><br><span class="line">    image: lscr.io/linuxserver/wikijs</span><br><span class="line">    container_name: wikijs</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=1000        # 如何查看当前用户的PUID和PGID，直接命令行输入id就行</span><br><span class="line">      - PGID=1000</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wikijs/config:/config  # 配置文件映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">      - /root/data/docker_data/wikijs/data:/data  # 数据映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">    ports:</span><br><span class="line">      - 9630:3000   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>没问题的话，ctrl+x退出，按y保存，enter确认。</p>
-<p>然后运行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>访问：&#x3D;&#x3D;http:服务ip:8080 即可。&#x3D;&#x3D;</p>
-<hr>
-<p>注意：</p>
-<p>1、不知道服务器IP，可以直接在命令行输入：curl <a href="http://ip.sb/">ip.sb</a>，会显示当前服务器的IP。</p>
-<p>2、遇到访问不了的情况，请在宝塔面板的防火墙和服务商的后台防火墙里打开对应端口。</p>
-<hr>
-<h3 id="4-2-更新"><a href="#4-2-更新" class="headerlink" title="4.2 更新"></a>4.2 更新</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp -r /root/data/docker_data/wikijs /root/data/docker_data/wikijs.archive # 万事先备份，以防万一</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/wikijs # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose pull # 拉取最新的镜像</span><br><span class="line"></span><br><span class="line">docker-compose up -d # 重新更新当前镜像</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-</blockquote>
-<p>利用Docker-compose搭建的应用，更新非常容易～</p>
-<hr>
-<h3 id="4-3-卸载"><a href="#4-3-卸载" class="headerlink" title="4.3 卸载"></a>4.3 卸载</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wikijs # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wikijs # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
-
-<p>此时，执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
-
-<p>可以看到三个文件夹，config、 data、 docker-compose.yml</p>
-<hr>
-<p>如果想要删除配置文件和数据，重新搭建的话，执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf config/</span><br><span class="line"></span><br><span class="line">rm -rf data/</span><br></pre></td></tr></table></figure>
-
-<p>如果想要全部删除的话，执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd .. # 退回到/root/data/docker_data目录</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wikijs # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <tags>
         <tag>docker</tag>
       </tags>
@@ -517,21 +532,6 @@
 
 
 <h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nextcloud搭建</title>
-    <url>/posts/8093261a/</url>
-    <content><![CDATA[<p>创建一下安装的目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
