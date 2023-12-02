@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>docker compose命令</title>
+    <url>/posts/6c40434b/</url>
+    <content><![CDATA[<hr>
+<p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker常用命令大全</title>
     <url>/posts/d73d9aa0/</url>
     <content><![CDATA[<p>1.docker或docker-help#查看docker自带的帮助信息  </p>
@@ -152,16 +162,6 @@
 </ul>
 </li>
 </ul>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker compose命令</title>
-    <url>/posts/6c40434b/</url>
-    <content><![CDATA[<hr>
-<p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
 ]]></content>
       <tags>
         <tag>docker</tag>
@@ -506,21 +506,6 @@
       </tags>
   </entry>
   <entry>
-    <title>nextcloud搭建</title>
-    <url>/posts/8093261a/</url>
-    <content><![CDATA[<p>创建一下安装的目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wordpress博客搭建</title>
     <url>/posts/e779e2ee/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
@@ -532,6 +517,21 @@
 
 
 <h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nextcloud搭建</title>
+    <url>/posts/8093261a/</url>
+    <content><![CDATA[<p>创建一下安装的目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
