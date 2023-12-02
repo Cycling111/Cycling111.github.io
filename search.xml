@@ -153,8 +153,12 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>命令</tag>
       </tags>
   </entry>
   <entry>
@@ -163,8 +167,12 @@
     <content><![CDATA[<hr>
 <p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>命令</tag>
       </tags>
   </entry>
   <entry>
@@ -187,8 +195,12 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 <h3 id="设置SWAP可以用脚本"><a href="#设置SWAP可以用脚本" class="headerlink" title="设置SWAP可以用脚本:"></a>设置SWAP可以用脚本:</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>dcoker compose</tag>
       </tags>
   </entry>
   <entry>
@@ -218,8 +230,12 @@
 可以卸载得很干净。
 </code></pre>
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -253,7 +269,7 @@
 
 <p>这边我们直接用 docker 的方式安装。</p>
 <p>英文输入法下，按 <code>i</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  halo:</span><br><span class="line">    image: halohub/halo:2.10.0</span><br><span class="line">    container_name: halo</span><br><span class="line">    restart: on-failure:3</span><br><span class="line">    depends_on:</span><br><span class="line">      halodb:</span><br><span class="line">        condition: service_healthy</span><br><span class="line">    networks:</span><br><span class="line">      halo_network:</span><br><span class="line">    volumes:</span><br><span class="line">      - ./:/root/.halo2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9500:8090&quot;</span><br><span class="line">    command:</span><br><span class="line">      - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo</span><br><span class="line">      - --spring.r2dbc.username=root</span><br><span class="line">      </span><br><span class="line">      - --spring.r2dbc.password=o#DwN&amp;JSa56</span><br><span class="line">      - --spring.sql.init.platform=mysql</span><br><span class="line">      </span><br><span class="line">      - --halo.external-url=https://www.cyclingweb.top</span><br><span class="line">      </span><br><span class="line">      - --halo.security.initializer.superadminusername=admin</span><br><span class="line">      </span><br><span class="line">      - --halo.security.initializer.superadminpassword=P@88w0rd</span><br><span class="line"></span><br><span class="line">  halodb:</span><br><span class="line">    image: mysql:8.0.31</span><br><span class="line">    container_name: halodb</span><br><span class="line">    restart: on-failure:3</span><br><span class="line">    networks:</span><br><span class="line">      halo_network:</span><br><span class="line">    command: </span><br><span class="line">      - --default-authentication-plugin=mysql_native_password</span><br><span class="line">      - --character-set-server=utf8mb4</span><br><span class="line">      - --collation-server=utf8mb4_general_ci</span><br><span class="line">      - --explicit_defaults_for_timestamp=true</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql:/var/lib/mysql</span><br><span class="line">      - ./mysqlBackup:/data/mysqlBackup</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3306&quot;</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;mysqladmin&quot;, &quot;ping&quot;, &quot;-h&quot;, &quot;127.0.0.1&quot;, &quot;--silent&quot;]</span><br><span class="line">      interval: 3s</span><br><span class="line">      retries: 5</span><br><span class="line">      start_period: 30s</span><br><span class="line">    environment:</span><br><span class="line">      </span><br><span class="line">      - MYSQL_ROOT_PASSWORD=o#DwN&amp;JSa56</span><br><span class="line">      - MYSQL_DATABASE=halo</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  halo_network:</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  halo:</span><br><span class="line">    image: halohub/halo:2.10.0</span><br><span class="line">    container_name: halo</span><br><span class="line">    restart: on-failure:3</span><br><span class="line">    depends_on:</span><br><span class="line">      halodb:</span><br><span class="line">        condition: service_healthy</span><br><span class="line">    networks:</span><br><span class="line">      halo_network:</span><br><span class="line">    volumes:</span><br><span class="line">      - ./:/root/.halo2</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8080:8090&quot; #左边端口随便改</span><br><span class="line">    command:</span><br><span class="line">      - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo</span><br><span class="line">      - --spring.r2dbc.username=root</span><br><span class="line">      </span><br><span class="line">      - --spring.r2dbc.password=o#DwN&amp;JSa56</span><br><span class="line">      - --spring.sql.init.platform=mysql</span><br><span class="line">      </span><br><span class="line">      - --halo.external-url=https://www.example.com</span><br><span class="line">      </span><br><span class="line">      - --halo.security.initializer.superadminusername=admin</span><br><span class="line">      </span><br><span class="line">      - --halo.security.initializer.superadminpassword=P@88w0rd</span><br><span class="line"></span><br><span class="line">  halodb:</span><br><span class="line">    image: mysql:8.0.31</span><br><span class="line">    container_name: halodb</span><br><span class="line">    restart: on-failure:3</span><br><span class="line">    networks:</span><br><span class="line">      halo_network:</span><br><span class="line">    command: </span><br><span class="line">      - --default-authentication-plugin=mysql_native_password</span><br><span class="line">      - --character-set-server=utf8mb4</span><br><span class="line">      - --collation-server=utf8mb4_general_ci</span><br><span class="line">      - --explicit_defaults_for_timestamp=true</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql:/var/lib/mysql</span><br><span class="line">      - ./mysqlBackup:/data/mysqlBackup</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3306&quot;</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;mysqladmin&quot;, &quot;ping&quot;, &quot;-h&quot;, &quot;127.0.0.1&quot;, &quot;--silent&quot;]</span><br><span class="line">      interval: 3s</span><br><span class="line">      retries: 5</span><br><span class="line">      start_period: 30s</span><br><span class="line">    environment:</span><br><span class="line">      </span><br><span class="line">      - MYSQL_ROOT_PASSWORD=o#DwN&amp;JSa56</span><br><span class="line">      - MYSQL_DATABASE=halo</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  halo_network:</span><br></pre></td></tr></table></figure>
 
 <p>注意：<code>docker-compose.yml</code> 里面的<code>--halo.external-url=[http://localhost:8090/](http://localhost:8090/)</code> ，其中的<code>[http://localhost:8090/](http://localhost:8090/)</code>需要更改为你的域名，如果你打算用的域名是<code>abc.com</code>也就是要改成<code>--halo.external-url=[https://abc.com](https://abc.com/)</code></p>
 <p>版本号<code>2.6.0</code>，可以看这边：<a href="https://github.com/halo-dev/halo/releases" title="https://github.com/halo-dev/halo/releases"></a><a href="https://github.com/halo-dev/halo/releases" title="https://github.com/halo-dev/halo/releases">https://github.com/halo-dev/halo/releases</a> 保证自己是新版本～</p>
@@ -324,8 +340,12 @@
 <p>所以后来就不用了，直接用上面的方法来操作了。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>文档地址：<a href="http://docs.halo.run/" title="http://docs.halo.run/"></a><a href="http://docs.halo.run/" title="http://docs.halo.run/">http://docs.halo.run/</a><br>社区地址：<a href="https://bbs.halo.run/" title="https://bbs.halo.run/"></a><a href="https://bbs.halo.run/" title="https://bbs.halo.run/">https://bbs.halo.run/</a><br>官网地址：<a href="https://halo.run/" title="https://halo.run/"></a><a href="https://halo.run/" title="https://halo.run/">https://halo.run/</a><br>GitHub地址：<a href="https://github.com/halo-dev/halo" title="https://github.com/halo-dev/halo"></a><a href="https://github.com/halo-dev/halo" title="https://github.com/halo-dev/halo">https://github.com/halo-dev/halo</a></p>
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -343,7 +363,7 @@
 <h4 id="2-1-1-mysql"><a href="#2-1-1-mysql" class="headerlink" title="2.1.1 mysql"></a>2.1.1 mysql</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">nano mysql.env</span><br></pre></td></tr></table></figure>
 
 <p>填入下面的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MYSQL_ROOT_PASSWORD=0422ajddfjkafj</span><br><span class="line">MYSQL_DATABASE=typechoasdjklk</span><br><span class="line">MYSQL_USER=lisds</span><br><span class="line">MYSQL_PASSWORD=0422ajddfjkafj</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MYSQL_ROOT_PASSWORD=123</span><br><span class="line">MYSQL_DATABASE=typechoasdjklk</span><br><span class="line">MYSQL_USER=lisds</span><br><span class="line">MYSQL_PASSWORD=123</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-1-2-php-fpm"><a href="#2-1-2-php-fpm" class="headerlink" title="2.1.2 php-fpm"></a>2.1.2 php-fpm</h4><p>其中 php 目录为 <code>php-fpm</code> 的 Dockerfile，在官方镜像的基础上，添加了 <code>PDO_MYSQL</code>（如果使用 MySQL 作为 Typecho 的数据库，则需安装此扩展），并设置 <code>buffer</code> 为 <code>4kb</code>，即一个内存页。同时设置了时区为<code>RPC</code>，来源于issue: <a href="https://github.com/typecho/typecho/issues/1090">https://github.com/typecho/typecho/issues/1090</a></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">mkdir php</span><br><span class="line"></span><br><span class="line">cd php</span><br><span class="line"></span><br><span class="line">nano Dockerfile</span><br></pre></td></tr></table></figure>
@@ -417,8 +437,12 @@
 <p>填入上面的内容，然后点击继续安装即可。</p>
 <h3 id="4-1-地址重写功能"><a href="#4-1-地址重写功能" class="headerlink" title="4.1 地址重写功能"></a>4.1 地址重写功能</h3><p><a href="https://img.laoda.de/i/2022/05/07/yy5ted-0.webp"><img src="https://img.laoda.de/i/2022/05/07/yy5ted-0.webp" alt="image-20220507211319272"></a></p>
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -470,7 +494,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wikijs</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/wikijs</span><br><span class="line"></span><br><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
 
 <p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;2.1&quot;</span><br><span class="line">services:</span><br><span class="line">  wikijs:</span><br><span class="line">    image: lscr.io/linuxserver/wikijs</span><br><span class="line">    container_name: wikijs</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=1000        # 如何查看当前用户的PUID和PGID，直接命令行输入id就行</span><br><span class="line">      - PGID=1000</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wikijs/config:/config  # 配置文件映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">      - /root/data/docker_data/wikijs/data:/data  # 数据映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">    ports:</span><br><span class="line">      - 9630:3000   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;2.1&quot;</span><br><span class="line">services:</span><br><span class="line">  wikijs:</span><br><span class="line">    image: lscr.io/linuxserver/wikijs</span><br><span class="line">    container_name: wikijs</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=1000        # 如何查看当前用户的PUID和PGID，直接命令行输入id就行</span><br><span class="line">      - PGID=1000</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wikijs/config:/config  # 配置文件映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">      - /root/data/docker_data/wikijs/data:/data  # 数据映射到本地，数据不会因为Docker停止而丢失</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:3000   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    restart: unless-stopped</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>没问题的话，ctrl+x退出，按y保存，enter确认。</p>
@@ -501,8 +525,12 @@
 
 <p>如果想要全部删除的话，执行：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd .. # 退回到/root/data/docker_data目录</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wikijs # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>wikijs</tag>
       </tags>
   </entry>
   <entry>
@@ -510,7 +538,7 @@
     <url>/posts/e779e2ee/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
 <p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 9020:80</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/data:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &#x27;1&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">#volumes:</span><br><span class="line">#  wordpress:</span><br><span class="line">#  db:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:80   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/data:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &#x27;1&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">#volumes:</span><br><span class="line">#  wordpress:</span><br><span class="line">#  db:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
@@ -519,8 +547,12 @@
 <h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>website</tag>
       </tags>
   </entry>
   <entry>
@@ -534,8 +566,12 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>cloud storage</tag>
       </tags>
   </entry>
   <entry>
@@ -602,8 +638,12 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:     60s</span><br><span class="line">  evaluation_interval: 60s</span><br><span class="line"></span><br><span class="line">scrape_configs:</span><br><span class="line"></span><br><span class="line">  - job_name: prometheus</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;localhost:9090&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: prometheus</span><br><span class="line"></span><br><span class="line">  - job_name: linux</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9100&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: localhost</span><br><span class="line">   #  - targets: [&#x27;ip:9100&#x27;]  </span><br><span class="line">   #这里添加targets，可以使用Prometheus监控其他装有node_exporter的节点，单节点则不需要</span><br><span class="line">   #    labels:</span><br><span class="line">   #      instance: 192.168.1.22</span><br><span class="line"></span><br><span class="line">  - job_name: cadvisor</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;172.17.0.6:8080&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: cAdvisor</span><br><span class="line"></span><br><span class="line">  - job_name: mysqld</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9104&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: mysql-exporter</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>注意：修改IP地址，这里的172.17.0. xx就是docker容器内的私网，需要自行查询:<code>:</code></p>
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>监控</tag>
       </tags>
   </entry>
   <entry>
@@ -613,13 +653,17 @@
 
 
 <p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.3&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  uptime-kuma:</span><br><span class="line">    image: louislam/uptime-kuma</span><br><span class="line">    container_name: uptime-kuma</span><br><span class="line">    volumes:</span><br><span class="line">      - ./uptime-kuma:/app/data</span><br><span class="line">    ports:</span><br><span class="line">      - 3001:3001</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.3&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  uptime-kuma:</span><br><span class="line">    image: louislam/uptime-kuma</span><br><span class="line">    container_name: uptime-kuma</span><br><span class="line">    volumes:</span><br><span class="line">      - ./uptime-kuma:/app/data</span><br><span class="line">    ports:</span><br><span class="line">      - 3001:3001     # 左边的3001可以自己调整端口号，右边的3000不要改</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>监控</tag>
       </tags>
   </entry>
   <entry>
@@ -630,7 +674,7 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">version: &quot;3.3&quot;</span><br><span class="line">services:</span><br><span class="line">  mail:</span><br><span class="line">    image: bytemark/smtp</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">  plausible_db:</span><br><span class="line">    # supported versions are 12, 13, and 14</span><br><span class="line">    image: postgres:14-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db-data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line">  plausible_events_db:</span><br><span class="line">    image: clickhouse/clickhouse-server:23.3.7.5-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./event-data:/var/lib/clickhouse</span><br><span class="line">      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro</span><br><span class="line">      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro</span><br><span class="line">    ulimits:</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line"></span><br><span class="line">  plausible:</span><br><span class="line">    image: plausible/analytics:v2.0</span><br><span class="line">    restart: always</span><br><span class="line">    command: sh -c &quot;sleep 10 &amp;&amp; /entrypoint.sh db createdb &amp;&amp; /entrypoint.sh db migrate &amp;&amp; /entrypoint.sh run&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - plausible_db</span><br><span class="line">      - plausible_events_db</span><br><span class="line">      - mail</span><br><span class="line">    ports:</span><br><span class="line">      - 8190:8000     # 左边端口号随便改</span><br><span class="line">    env_file:</span><br><span class="line">      - plausible-conf.env</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">version: &quot;3.3&quot;</span><br><span class="line">services:</span><br><span class="line">  mail:</span><br><span class="line">    image: bytemark/smtp</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">  plausible_db:</span><br><span class="line">    # supported versions are 12, 13, and 14</span><br><span class="line">    image: postgres:14-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db-data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line">  plausible_events_db:</span><br><span class="line">    image: clickhouse/clickhouse-server:23.3.7.5-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./event-data:/var/lib/clickhouse</span><br><span class="line">      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro</span><br><span class="line">      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro</span><br><span class="line">    ulimits:</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line"></span><br><span class="line">  plausible:</span><br><span class="line">    image: plausible/analytics:v2.0</span><br><span class="line">    restart: always</span><br><span class="line">    command: sh -c &quot;sleep 10 &amp;&amp; /entrypoint.sh db createdb &amp;&amp; /entrypoint.sh db migrate &amp;&amp; /entrypoint.sh run&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - plausible_db</span><br><span class="line">      - plausible_events_db</span><br><span class="line">      - mail</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:8000     # 左边端口号随便改</span><br><span class="line">    env_file:</span><br><span class="line">      - plausible-conf.env</span><br></pre></td></tr></table></figure>
 
 <p>生成密钥：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rand -base64 64 | tr -d &#x27;\n&#x27; ; echo</span><br></pre></td></tr></table></figure>
@@ -647,8 +691,12 @@
 
 
 ]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>监控</tag>
       </tags>
   </entry>
   <entry>
@@ -890,8 +938,12 @@
 
 <p>持续更新中</p>
 ]]></content>
+      <categories>
+        <category>脚本s</category>
+      </categories>
       <tags>
         <tag>docker</tag>
+        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>
@@ -901,7 +953,7 @@
 
 
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.9&#x27;</span><br><span class="line">services:</span><br><span class="line">    portainer-ce:</span><br><span class="line">        image: &#x27;portainer/portainer-ce:latest&#x27;</span><br><span class="line">        volumes:</span><br><span class="line">            - &#x27;/root/data/docker_data/portainer/data:/data&#x27;</span><br><span class="line">            - &#x27;/var/run/docker.sock:/var/run/docker.sock&#x27;</span><br><span class="line">        restart: always</span><br><span class="line">        container_name: portainer</span><br><span class="line">        ports:</span><br><span class="line">            - &#x27;9660:9443&#x27;  # 左边随便改</span><br><span class="line">            - &#x27;8000:8000&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.9&#x27;</span><br><span class="line">services:</span><br><span class="line">    portainer-ce:</span><br><span class="line">        image: &#x27;portainer/portainer-ce:latest&#x27;</span><br><span class="line">        volumes:</span><br><span class="line">            - &#x27;/root/data/docker_data/portainer/data:/data&#x27;</span><br><span class="line">            - &#x27;/var/run/docker.sock:/var/run/docker.sock&#x27;</span><br><span class="line">        restart: always</span><br><span class="line">        container_name: portainer</span><br><span class="line">        ports:</span><br><span class="line">            - &#x27;8080:9443&#x27;  # 左边随便改</span><br><span class="line">            - &#x27;8000:8000&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
@@ -912,6 +964,7 @@
       </categories>
       <tags>
         <tag>docker</tag>
+        <tag>可视化</tag>
       </tags>
   </entry>
 </search>
