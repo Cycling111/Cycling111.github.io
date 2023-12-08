@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>docker compose命令</title>
+    <url>/posts/6c40434b/</url>
+    <content><![CDATA[<hr>
+<p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker常用命令大全</title>
     <url>/posts/d73d9aa0/</url>
     <content><![CDATA[<p>1.docker或docker-help#查看docker自带的帮助信息  </p>
@@ -162,20 +176,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker compose命令</title>
-    <url>/posts/6c40434b/</url>
-    <content><![CDATA[<hr>
-<p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker and docker compose安装</title>
     <url>/posts/e817ffda/</url>
     <content><![CDATA[<h2 id="1、升级-packages"><a href="#1、升级-packages" class="headerlink" title="1、升级 packages"></a>1、升级 packages</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i # 切换到 root 用户  </span><br><span class="line">  </span><br><span class="line">apt update -y  # 升级 packages  </span><br><span class="line">  </span><br><span class="line">apt install wget curl sudo vim git -y  # Debian 系统比较干净，安装常用的软件 </span><br></pre></td></tr></table></figure>
@@ -201,41 +201,6 @@
       <tags>
         <tag>docker</tag>
         <tag>dcoker compose</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx proxy manager安装</title>
-    <url>/posts/e5f66663/</url>
-    <content><![CDATA[<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>创建一下安装的目录：  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i  </span><br><span class="line">  </span><br><span class="line">mkdir -p /root/data/docker_data/npm  </span><br><span class="line">  </span><br><span class="line">cd /root/data/docker_data/npm  </span><br></pre></td></tr></table></figure>
-
-<p>这边我们直接用docker，参考这篇文章（ [[03、docker and docker compose]]）的方式安装。  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml </span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line">英文输入法下，按 i </span><br></pre></td></tr></table></figure>
-<p>version: ‘3’<br>services:<br>  app:<br>    image: ‘jc21&#x2F;nginx-proxy-manager:latest’<br>    restart: unless-stopped<br>    ports:<br>      - ‘80:80’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘81:81’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘443:443’ # 冒号左边可以改成自己服务器未被占用的端口<br>    volumes:<br>      - .&#x2F;data:&#x2F;data # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 data 文件夹中<br>      - .&#x2F;letsencrypt:&#x2F;etc&#x2F;letsencrypt  # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 letsencrypt 文件夹中  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">按一下 esc，然后 :wq 保存退出，之后，  </span><br><span class="line">  </span><br><span class="line">查看端口是否被占用（以 81 为例），输入：  </span><br><span class="line">  </span><br><span class="line">lsof -i:81  # 查看 81 端口是否被占用，如果被占用，重新自定义一个端口  </span><br><span class="line">如果啥也没出现，表示端口未被占用，我们可以继续下面的操作了～  </span><br><span class="line">  </span><br><span class="line">如果出现：  </span><br><span class="line">  </span><br><span class="line">-bash: lsof: command not found  </span><br><span class="line">运行：  </span><br><span class="line">  </span><br><span class="line">apt install lsof  # 安装 lsof  </span><br><span class="line">如果端口没有被占用（被占用了就修改一下端口，比如改成 82，注意 docker 命令行里和防火墙都要改）  </span><br><span class="line">  </span><br><span class="line">运行并访问 Nginx Proxy Manager  </span><br><span class="line">最后：  </span><br></pre></td></tr></table></figure>
-<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm   # 来到 dockercompose 文件所在的文件夹下  </p>
-<p>docker-compose up -d   </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">理论上我们就可以输入 http://ip:81 访问了。  </span><br><span class="line">  </span><br><span class="line">默认登陆名和密码：  </span><br><span class="line">  </span><br><span class="line">Email:    admin@example.com  </span><br><span class="line">Password: changeme  </span><br><span class="line"></span><br><span class="line">注意：  </span><br><span class="line">  </span><br><span class="line">1、不知道服务器 IP，可以直接在命令行输入：curl ip.sb，会显示当前服务器的 IP。  </span><br><span class="line">  </span><br><span class="line">2、遇到访问不了的情况，请再次检查在宝塔面板的防火墙和服务商的后台防火墙是否打开对应了端口。  </span><br><span class="line">  </span><br><span class="line">## 更新 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
-<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
-<p>docker-compose down   </p>
-<p>cp -r &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm.archive  # 万事先备份，以防万一  </p>
-<p>docker-compose pull  </p>
-<p>docker-compose up -d      </p>
-<p>docker image prune  # prune 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">提示：  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">WARNING! This will remove all dangling images.  </span><br><span class="line">Are you sure you want to continue? [y/N]   </span><br><span class="line">输入 y  </span><br><span class="line">  </span><br><span class="line">利用 Docker 搭建的应用，更新非常容易</span><br><span class="line">  </span><br><span class="line">## 卸载 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
-<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
-<p>docker-compose down   </p>
-<p>rm -rf &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  # 完全删除映射到本地的数据  </p>
-<pre><code>
-可以卸载得很干净。
-</code></pre>
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -446,6 +411,82 @@
       </tags>
   </entry>
   <entry>
+    <title>nginx proxy manager安装</title>
+    <url>/posts/e5f66663/</url>
+    <content><![CDATA[<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>创建一下安装的目录：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i  </span><br><span class="line">  </span><br><span class="line">mkdir -p /root/data/docker_data/npm  </span><br><span class="line">  </span><br><span class="line">cd /root/data/docker_data/npm  </span><br></pre></td></tr></table></figure>
+
+<p>这边我们直接用docker，参考这篇文章（ [[03、docker and docker compose]]）的方式安装。  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml </span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line">英文输入法下，按 i </span><br></pre></td></tr></table></figure>
+<p>version: ‘3’<br>services:<br>  app:<br>    image: ‘jc21&#x2F;nginx-proxy-manager:latest’<br>    restart: unless-stopped<br>    ports:<br>      - ‘80:80’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘81:81’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘443:443’ # 冒号左边可以改成自己服务器未被占用的端口<br>    volumes:<br>      - .&#x2F;data:&#x2F;data # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 data 文件夹中<br>      - .&#x2F;letsencrypt:&#x2F;etc&#x2F;letsencrypt  # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 letsencrypt 文件夹中  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">按一下 esc，然后 :wq 保存退出，之后，  </span><br><span class="line">  </span><br><span class="line">查看端口是否被占用（以 81 为例），输入：  </span><br><span class="line">  </span><br><span class="line">lsof -i:81  # 查看 81 端口是否被占用，如果被占用，重新自定义一个端口  </span><br><span class="line">如果啥也没出现，表示端口未被占用，我们可以继续下面的操作了～  </span><br><span class="line">  </span><br><span class="line">如果出现：  </span><br><span class="line">  </span><br><span class="line">-bash: lsof: command not found  </span><br><span class="line">运行：  </span><br><span class="line">  </span><br><span class="line">apt install lsof  # 安装 lsof  </span><br><span class="line">如果端口没有被占用（被占用了就修改一下端口，比如改成 82，注意 docker 命令行里和防火墙都要改）  </span><br><span class="line">  </span><br><span class="line">运行并访问 Nginx Proxy Manager  </span><br><span class="line">最后：  </span><br></pre></td></tr></table></figure>
+<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm   # 来到 dockercompose 文件所在的文件夹下  </p>
+<p>docker-compose up -d   </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">理论上我们就可以输入 http://ip:81 访问了。  </span><br><span class="line">  </span><br><span class="line">默认登陆名和密码：  </span><br><span class="line">  </span><br><span class="line">Email:    admin@example.com  </span><br><span class="line">Password: changeme  </span><br><span class="line"></span><br><span class="line">注意：  </span><br><span class="line">  </span><br><span class="line">1、不知道服务器 IP，可以直接在命令行输入：curl ip.sb，会显示当前服务器的 IP。  </span><br><span class="line">  </span><br><span class="line">2、遇到访问不了的情况，请再次检查在宝塔面板的防火墙和服务商的后台防火墙是否打开对应了端口。  </span><br><span class="line">  </span><br><span class="line">## 更新 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
+<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
+<p>docker-compose down   </p>
+<p>cp -r &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm.archive  # 万事先备份，以防万一  </p>
+<p>docker-compose pull  </p>
+<p>docker-compose up -d      </p>
+<p>docker image prune  # prune 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">提示：  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">WARNING! This will remove all dangling images.  </span><br><span class="line">Are you sure you want to continue? [y/N]   </span><br><span class="line">输入 y  </span><br><span class="line">  </span><br><span class="line">利用 Docker 搭建的应用，更新非常容易</span><br><span class="line">  </span><br><span class="line">## 卸载 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
+<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
+<p>docker-compose down   </p>
+<p>rm -rf &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  # 完全删除映射到本地的数据  </p>
+<pre><code>
+可以卸载得很干净。
+</code></pre>
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wordpress博客搭建</title>
+    <url>/posts/e779e2ee/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml填入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:80   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/data:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &#x27;1&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">#volumes:</span><br><span class="line">#  wordpress:</span><br><span class="line">#  db:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>website</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nextcloud搭建</title>
+    <url>/posts/8093261a/</url>
+    <content><![CDATA[<p>创建一下安装的目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>cloud storage</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Wiki.js搭建</title>
     <url>/posts/6b5f11fd/</url>
     <content><![CDATA[<p>&#x3D;&#x3D;转载，仅供个人学习！！！&#x3D;&#x3D;</p>
@@ -531,47 +572,6 @@
       <tags>
         <tag>docker</tag>
         <tag>wikijs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>wordpress博客搭建</title>
-    <url>/posts/e779e2ee/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
-<p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:80   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/data:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &#x27;1&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">#volumes:</span><br><span class="line">#  wordpress:</span><br><span class="line">#  db:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>website</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nextcloud搭建</title>
-    <url>/posts/8093261a/</url>
-    <content><![CDATA[<p>创建一下安装的目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>cloud storage</tag>
       </tags>
   </entry>
   <entry>
