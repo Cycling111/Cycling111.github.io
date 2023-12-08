@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>docker常用命令大全</title>
+    <title>docker-命令</title>
     <url>/posts/d73d9aa0/</url>
     <content><![CDATA[<p>1.docker或docker-help#查看docker自带的帮助信息  </p>
 <p>启动类命令  </p>
@@ -162,7 +162,7 @@
       </tags>
   </entry>
   <entry>
-    <title>docker compose命令</title>
+    <title>docker compose-命令</title>
     <url>/posts/6c40434b/</url>
     <content><![CDATA[<hr>
 <p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
@@ -173,41 +173,6 @@
       <tags>
         <tag>docker</tag>
         <tag>命令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx proxy manager安装</title>
-    <url>/posts/e5f66663/</url>
-    <content><![CDATA[<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>创建一下安装的目录：  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i  </span><br><span class="line">  </span><br><span class="line">mkdir -p /root/data/docker_data/npm  </span><br><span class="line">  </span><br><span class="line">cd /root/data/docker_data/npm  </span><br></pre></td></tr></table></figure>
-
-<p>这边我们直接用docker，参考这篇文章（ [[03、docker and docker compose]]）的方式安装。  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml </span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line">英文输入法下，按 i </span><br></pre></td></tr></table></figure>
-<p>version: ‘3’<br>services:<br>  app:<br>    image: ‘jc21&#x2F;nginx-proxy-manager:latest’<br>    restart: unless-stopped<br>    ports:<br>      - ‘80:80’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘81:81’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘443:443’ # 冒号左边可以改成自己服务器未被占用的端口<br>    volumes:<br>      - .&#x2F;data:&#x2F;data # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 data 文件夹中<br>      - .&#x2F;letsencrypt:&#x2F;etc&#x2F;letsencrypt  # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 letsencrypt 文件夹中  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">按一下 esc，然后 :wq 保存退出，之后，  </span><br><span class="line">  </span><br><span class="line">查看端口是否被占用（以 81 为例），输入：  </span><br><span class="line">  </span><br><span class="line">lsof -i:81  # 查看 81 端口是否被占用，如果被占用，重新自定义一个端口  </span><br><span class="line">如果啥也没出现，表示端口未被占用，我们可以继续下面的操作了～  </span><br><span class="line">  </span><br><span class="line">如果出现：  </span><br><span class="line">  </span><br><span class="line">-bash: lsof: command not found  </span><br><span class="line">运行：  </span><br><span class="line">  </span><br><span class="line">apt install lsof  # 安装 lsof  </span><br><span class="line">如果端口没有被占用（被占用了就修改一下端口，比如改成 82，注意 docker 命令行里和防火墙都要改）  </span><br><span class="line">  </span><br><span class="line">运行并访问 Nginx Proxy Manager  </span><br><span class="line">最后：  </span><br></pre></td></tr></table></figure>
-<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm   # 来到 dockercompose 文件所在的文件夹下  </p>
-<p>docker-compose up -d   </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">理论上我们就可以输入 http://ip:81 访问了。  </span><br><span class="line">  </span><br><span class="line">默认登陆名和密码：  </span><br><span class="line">  </span><br><span class="line">Email:    admin@example.com  </span><br><span class="line">Password: changeme  </span><br><span class="line"></span><br><span class="line">注意：  </span><br><span class="line">  </span><br><span class="line">1、不知道服务器 IP，可以直接在命令行输入：curl ip.sb，会显示当前服务器的 IP。  </span><br><span class="line">  </span><br><span class="line">2、遇到访问不了的情况，请再次检查在宝塔面板的防火墙和服务商的后台防火墙是否打开对应了端口。  </span><br><span class="line">  </span><br><span class="line">## 更新 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
-<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
-<p>docker-compose down   </p>
-<p>cp -r &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm.archive  # 万事先备份，以防万一  </p>
-<p>docker-compose pull  </p>
-<p>docker-compose up -d      </p>
-<p>docker image prune  # prune 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">提示：  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">WARNING! This will remove all dangling images.  </span><br><span class="line">Are you sure you want to continue? [y/N]   </span><br><span class="line">输入 y  </span><br><span class="line">  </span><br><span class="line">利用 Docker 搭建的应用，更新非常容易</span><br><span class="line">  </span><br><span class="line">## 卸载 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
-<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
-<p>docker-compose down   </p>
-<p>rm -rf &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  # 完全删除映射到本地的数据  </p>
-<pre><code>
-可以卸载得很干净。
-</code></pre>
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
@@ -239,104 +204,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Typecho博客搭建</title>
-    <url>/posts/368776e6/</url>
-    <content><![CDATA[<p>&#x3D;&#x3D;（转载，仅供个人学习使用）！！&#x3D;&#x3D;！<strong>出处：</strong><a href="https://iwanlab.com/docker-compose-install-typecho/"><strong>https://iwanlab.com/docker-compose-install-typecho/</strong></a></p>
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p><a href="https://iwanlab.com/tag/typecho/">Typecho</a>时隔多年，终于在今年更新了新版本，非常轻量的一款博客，整个源文件就<code>608K</code></p>
-<p>正常来说，这个是不适合用Docker来部署的，因为会把一个轻量的东西弄得很“重”，但是，谁叫我们懒呢，用Docker部署，维护和搬家方便呀，而且部署也简单，所以今天就索性来折腾一下吧。</p>
-<h2 id="2-搭建方式"><a href="#2-搭建方式" class="headerlink" title="2. 搭建方式"></a>2. 搭建方式</h2><h3 id="2-1-搭建"><a href="#2-1-搭建" class="headerlink" title="2.1 搭建"></a>2.1 搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i # 切换到root用户</span><br><span class="line"></span><br><span class="line">apt update -y  # 升级packages</span><br><span class="line"></span><br><span class="line">apt install wget curl sudo vim git  # Debian系统比较干净，安装常用的软件</span><br></pre></td></tr></table></figure>
-
-<p>创建一下安装的目录：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/typecho</span><br><span class="line"></span><br><span class="line">cd /root/data/typecho</span><br></pre></td></tr></table></figure>
-
-<p>先创建几个文件。</p>
-<h4 id="2-1-1-mysql"><a href="#2-1-1-mysql" class="headerlink" title="2.1.1 mysql"></a>2.1.1 mysql</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">nano mysql.env</span><br></pre></td></tr></table></figure>
-
-<p>填入下面的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MYSQL_ROOT_PASSWORD=123</span><br><span class="line">MYSQL_DATABASE=typechoasdjklk</span><br><span class="line">MYSQL_USER=lisds</span><br><span class="line">MYSQL_PASSWORD=123</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-2-php-fpm"><a href="#2-1-2-php-fpm" class="headerlink" title="2.1.2 php-fpm"></a>2.1.2 php-fpm</h4><p>其中 php 目录为 <code>php-fpm</code> 的 Dockerfile，在官方镜像的基础上，添加了 <code>PDO_MYSQL</code>（如果使用 MySQL 作为 Typecho 的数据库，则需安装此扩展），并设置 <code>buffer</code> 为 <code>4kb</code>，即一个内存页。同时设置了时区为<code>RPC</code>，来源于issue: <a href="https://github.com/typecho/typecho/issues/1090">https://github.com/typecho/typecho/issues/1090</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">mkdir php</span><br><span class="line"></span><br><span class="line">cd php</span><br><span class="line"></span><br><span class="line">nano Dockerfile</span><br></pre></td></tr></table></figure>
-
-<p>输入下面的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM php:7.3.29-fpm</span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; docker-php-ext-install pdo_mysql \</span><br><span class="line">    &amp;&amp; echo &quot;output_buffering = 4096&quot; &gt; /usr/local/etc/php/conf.d/php.ini \</span><br><span class="line">    &amp;&amp; echo &quot;date.timezone = PRC&quot; &gt;&gt; /usr/local/etc/php/conf.d/php.ini</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-3-nginx"><a href="#2-1-3-nginx" class="headerlink" title="2.1.3 nginx"></a>2.1.3 nginx</h4><p>nginx 的配置要注意的是需要有<code>rewrite</code> 规则（后续typecho后台有一个地址重写功能），如果需要指定域名的话，需要写 <code>server_name</code> 字段。这里我并没有指定<code>443</code>端口，因为我们后面用到了反向代理。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">mkdir nginx</span><br><span class="line"></span><br><span class="line">cd nginx</span><br><span class="line"></span><br><span class="line">nano default.conf</span><br></pre></td></tr></table></figure>
-
-<p>输入下面的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    root /var/www/html;</span><br><span class="line">    index index.php;</span><br><span class="line"></span><br><span class="line">    access_log /var/log/nginx/typecho_access.log main;</span><br><span class="line">    if (!-e $request_filename) &#123;</span><br><span class="line">        rewrite ^(.*)$ /index.php$1 last;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html index.htm index.php;</span><br><span class="line"></span><br><span class="line">        if (!-e $request_filename) &#123;</span><br><span class="line">            rewrite . /index.php last;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php(.*)$ &#123;</span><br><span class="line">        fastcgi_pass   php:9000;</span><br><span class="line">        fastcgi_index  index.php;</span><br><span class="line">        fastcgi_param  PATH_TRANSLATED $document_root$fastcgi_path_info;</span><br><span class="line">        fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;</span><br><span class="line">        fastcgi_param  PATH_INFO  $fastcgi_path_info;</span><br><span class="line">        fastcgi_param  SCRIPT_NAME $fastcgi_script_name;</span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下载源码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho/typecho</span><br><span class="line"></span><br><span class="line">wget https://github.com/typecho/typecho/releases/download/v1.2.0/typecho.zip</span><br><span class="line"></span><br><span class="line">apt install zip -y </span><br><span class="line"></span><br><span class="line">unzip typecho.zip</span><br></pre></td></tr></table></figure>
-
-<p>创建<code>docker-compose</code>文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<p><code>docker-compose.yml</code>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    image: nginx</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9333:80&quot;    # 左边可以改成任意没使用的端口</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - ./typecho:/var/www/html</span><br><span class="line">      - ./nginx:/etc/nginx/conf.d</span><br><span class="line">      - ./logs:/var/log/nginx</span><br><span class="line">    depends_on:</span><br><span class="line">      - php</span><br><span class="line">    networks:</span><br><span class="line">      - web</span><br><span class="line"></span><br><span class="line">  php:</span><br><span class="line">    build: php</span><br><span class="line">    restart: always</span><br><span class="line">    expose:</span><br><span class="line">      - &quot;9000&quot;       # 不暴露公网，故没有写9000:9000</span><br><span class="line">    volumes:</span><br><span class="line">      - ./typecho:/var/www/html</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    depends_on:</span><br><span class="line">      - mysql</span><br><span class="line">    networks:</span><br><span class="line">      - web</span><br><span class="line"></span><br><span class="line">  mysql:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    expose:</span><br><span class="line">      - &quot;3306&quot;  # 不暴露公网，故没有写3306:3306</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql/data:/var/lib/mysql</span><br><span class="line">      - ./mysql/logs:/var/log/mysql</span><br><span class="line">      - ./mysql/conf:/etc/mysql/conf.d</span><br><span class="line">    env_file:</span><br><span class="line">      - mysql.env</span><br><span class="line">    networks:</span><br><span class="line">      - web</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  web:</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：如果VPS的内存比较小 ，推荐设置一下SWAP，一般为内存的1-1.5倍即可～</p>
-</blockquote>
-<p>设置SWAP可以用脚本:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
-
-<p>没问题的话，<code>ctrl+x</code>退出，按<code>y</code>保存，<code>enter</code>确认。</p>
-<p>查看端口是否被占用，输入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsof -i:9333  #查看8223端口是否被占用，如果被占用，重新自定义一个端口</span><br></pre></td></tr></table></figure>
-
-<p>如果出现：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-bash: lsof: command not found</span><br></pre></td></tr></table></figure>
-
-<p>运行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install lsof  #安装lsof</span><br></pre></td></tr></table></figure>
-
-<p>如果端口没有被占用，可以运行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d </span><br></pre></td></tr></table></figure>
-
-<p>访问：&#96;http:服务ip:9333 即可。</p>
-<blockquote>
-<p><strong>注意：</strong></p>
-<p>1、不知道服务器IP，可以直接在命令行输入：<code>curl ip.sb</code>，会显示当前服务器的IP。</p>
-<p>2、遇到访问不了的情况，请在宝塔面板的防火墙和服务商的后台防火墙里打开对应端口。</p>
-</blockquote>
-<h3 id="2-2-更新"><a href="#2-2-更新" class="headerlink" title="2.2 更新"></a>2.2 更新</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose pull    # 拉取最新的镜像</span><br><span class="line"></span><br><span class="line">docker-compose up -d   # 重新更新当前镜像</span><br></pre></td></tr></table></figure>
-
-<p>利用Docker-compose搭建的应用，更新非常容易～</p>
-<h3 id="2-3-卸载"><a href="#2-3-卸载" class="headerlink" title="2.3 卸载"></a>2.3 卸载</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i  # 切换到root</span><br><span class="line"></span><br><span class="line">cd /root/data/typecho # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down    # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">cd ~</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/typecho  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
-
-<p>利用Docker-compose搭建的应用，删除也非常容易～</p>
-<h2 id="3-反向代理"><a href="#3-反向代理" class="headerlink" title="3. 反向代理"></a>3. 反向代理</h2><h3 id="3-1-利用Nginx-Proxy-Manager"><a href="#3-1-利用Nginx-Proxy-Manager" class="headerlink" title="3.1 利用Nginx Proxy Manager"></a>3.1 利用Nginx Proxy Manager</h3><p>在添加反向代理之前，确保你已经完成了域名解析，登陆Nginx Proxy Manager</p>
-<blockquote>
-<p><strong>注意：</strong></p>
-<p>Nginx Proxy Manager（以下简称NPM）会用到<code>80</code>、<code>443</code>端口，所以本机不能占用（比如原来就有Nginx）</p>
-<p>注意填写对应的<code>域名</code>、<code>IP</code>和<code>端口</code>，按文章来的话，应该是<code>8223</code></p>
-</blockquote>
-<p><strong>IP填写：</strong></p>
-<p>如果Nginx Proxy Manager和reader在同一台服务器上，可以在终端输入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip addr show docker0</span><br></pre></td></tr></table></figure>
-
-<p>查看对应的Docker容器内部IP。</p>
-<p>否则直接填<code>docker所在的服务器IP</code>就行。</p>
-<p>完成之后，记得再次打开这个，把Force SSL再勾选上（小BUG）</p>
-<p>然后就可以用域名来安装访问了。</p>
-<h2 id="4-使用教程"><a href="#4-使用教程" class="headerlink" title="4. 使用教程"></a>4. 使用教程</h2><p><a href="https://img.laoda.de/i/2022/05/13/z6ntu3-0.webp"><img src="https://img.laoda.de/i/2022/05/13/z6ntu3-0.webp" alt="image-20220513212747473"></a><br><a href="https://img.laoda.de/i/2022/05/13/z6jcr6-0.webp"><img src="https://img.laoda.de/i/2022/05/13/z6jcr6-0.webp" alt="image-20220513212726407"></a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /root/data/docker_data/typecho/typecho</span><br><span class="line"></span><br><span class="line">nano config.inc.php</span><br></pre></td></tr></table></figure>
-
-<p>填入上面的内容，然后点击继续安装即可。</p>
-<h3 id="4-1-地址重写功能"><a href="#4-1-地址重写功能" class="headerlink" title="4.1 地址重写功能"></a>4.1 地址重写功能</h3><p><a href="https://img.laoda.de/i/2022/05/07/yy5ted-0.webp"><img src="https://img.laoda.de/i/2022/05/07/yy5ted-0.webp" alt="image-20220507211319272"></a></p>
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>整理一些常用的脚本</title>
+    <title>个人博客-Halo 2.0</title>
     <url>/posts/91208508/</url>
     <content><![CDATA[<p>比起Hexo等静态博客，Halo自带后台和评论功能，非常省心；比起Wordpress，Halo搭建简单，Docker搭建，一行命令搞定，迁移更新也更方便。对于对主题要求没那么高，只是想要搭建一个博客好好写文章的小伙伴来说，Halo绝对是一个不二的选择。</p>
 <p>更多阅读：<a href="https://blog.laoda.de/archives/blog-choosing" title="https://blog.laoda.de/archives/blog-choosing">Hexo还是Hugo？Typecho还是Wordpress？读完这篇或许你就有答案了！</a></p>
@@ -446,29 +314,42 @@
       </tags>
   </entry>
   <entry>
-    <title>wordpress博客搭建</title>
-    <url>/posts/e779e2ee/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
-<p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:80   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/data:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &#x27;1&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">#volumes:</span><br><span class="line">#  wordpress:</span><br><span class="line">#  db:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>反向代理工具-nginx proxy manager</title>
+    <url>/posts/e5f66663/</url>
+    <content><![CDATA[<h2 id="创建安装目录"><a href="#创建安装目录" class="headerlink" title="创建安装目录"></a>创建安装目录</h2><p>创建一下安装的目录：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i  </span><br><span class="line">  </span><br><span class="line">mkdir -p /root/data/docker_data/npm  </span><br><span class="line">  </span><br><span class="line">cd /root/data/docker_data/npm  </span><br></pre></td></tr></table></figure>
 
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
-
+<p>这边我们直接用docker，参考这篇文章（ [[03、docker and docker compose]]）的方式安装。  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml </span><br><span class="line">```  </span><br><span class="line"> </span><br><span class="line">英文输入法下，按 i </span><br></pre></td></tr></table></figure>
+<p>version: ‘3’<br>services:<br>  app:<br>    image: ‘jc21&#x2F;nginx-proxy-manager:latest’<br>    restart: unless-stopped<br>    ports:<br>      - ‘80:80’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘81:81’  # 冒号左边可以改成自己服务器未被占用的端口<br>      - ‘443:443’ # 冒号左边可以改成自己服务器未被占用的端口<br>    volumes:<br>      - .&#x2F;data:&#x2F;data # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 data 文件夹中<br>      - .&#x2F;letsencrypt:&#x2F;etc&#x2F;letsencrypt  # 冒号左边可以改路径，现在是表示把数据存放在在当前文件夹下的 letsencrypt 文件夹中  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">按一下 esc，然后 :wq 保存退出，之后，  </span><br><span class="line">  </span><br><span class="line">查看端口是否被占用（以 81 为例），输入：  </span><br><span class="line">  </span><br><span class="line">lsof -i:81  # 查看 81 端口是否被占用，如果被占用，重新自定义一个端口  </span><br><span class="line">如果啥也没出现，表示端口未被占用，我们可以继续下面的操作了～  </span><br><span class="line">  </span><br><span class="line">如果出现：  </span><br><span class="line">  </span><br><span class="line">-bash: lsof: command not found  </span><br><span class="line">运行：  </span><br><span class="line">  </span><br><span class="line">apt install lsof  # 安装 lsof  </span><br><span class="line">如果端口没有被占用（被占用了就修改一下端口，比如改成 82，注意 docker 命令行里和防火墙都要改）  </span><br><span class="line">  </span><br><span class="line">运行并访问 Nginx Proxy Manager  </span><br><span class="line">最后：  </span><br></pre></td></tr></table></figure>
+<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm   # 来到 dockercompose 文件所在的文件夹下  </p>
+<p>docker-compose up -d   </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">理论上我们就可以输入 http://ip:81 访问了。  </span><br><span class="line">  </span><br><span class="line">默认登陆名和密码：  </span><br><span class="line">  </span><br><span class="line">Email:    admin@example.com  </span><br><span class="line">Password: changeme  </span><br><span class="line"></span><br><span class="line">注意：  </span><br><span class="line">  </span><br><span class="line">1、不知道服务器 IP，可以直接在命令行输入：curl ip.sb，会显示当前服务器的 IP。  </span><br><span class="line">  </span><br><span class="line">2、遇到访问不了的情况，请再次检查在宝塔面板的防火墙和服务商的后台防火墙是否打开对应了端口。  </span><br><span class="line">  </span><br><span class="line">## 更新 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
+<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
+<p>docker-compose down   </p>
+<p>cp -r &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm.archive  # 万事先备份，以防万一  </p>
+<p>docker-compose pull  </p>
+<p>docker-compose up -d      </p>
+<p>docker image prune  # prune 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">提示：  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">WARNING! This will remove all dangling images.  </span><br><span class="line">Are you sure you want to continue? [y/N]   </span><br><span class="line">输入 y  </span><br><span class="line">  </span><br><span class="line">利用 Docker 搭建的应用，更新非常容易</span><br><span class="line">  </span><br><span class="line">## 卸载 Nginx Proxy Manager  </span><br></pre></td></tr></table></figure>
+<p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  </p>
+<p>docker-compose down   </p>
+<p>rm -rf &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;npm  # 完全删除映射到本地的数据  </p>
+<pre><code>
+可以卸载得很干净。
+</code></pre>
 ]]></content>
       <categories>
         <category>dockers</category>
       </categories>
       <tags>
         <tag>docker</tag>
-        <tag>website</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
-    <title>Wiki.js搭建</title>
+    <title>知识管理库-wiki.js</title>
     <url>/posts/6b5f11fd/</url>
     <content><![CDATA[<p>&#x3D;&#x3D;转载，仅供个人学习！！！&#x3D;&#x3D;</p>
 <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h2><p>今天，给大家介绍一个更牛逼的Wiki文档项目——Wiki.js。它功能更加强大，扩展性更强，也更加美观，甚至可以当作一个开源项目的文档系统（比如之前Halo博客的官方文档），支持多人协作，用了Wiki.js，从此，编写文档成为一种乐趣！</p>
@@ -556,7 +437,126 @@
       </tags>
   </entry>
   <entry>
-    <title>nextcloud搭建</title>
+    <title>个人网站-WordPress</title>
+    <url>/posts/e779e2ee/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml填入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:80   # 左边的8080可以自己调整端口号，右边的3000不要改</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/data:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &#x27;1&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - /root/data/docker_data/wordpress/db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">#volumes:</span><br><span class="line">#  wordpress:</span><br><span class="line">#  db:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/docker_data/wordpress  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/docker_data/wordpress  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>website</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人博客-Typecho</title>
+    <url>/posts/368776e6/</url>
+    <content><![CDATA[<p>&#x3D;&#x3D;（转载，仅供个人学习使用）！！&#x3D;&#x3D;！<strong>出处：</strong><a href="https://iwanlab.com/docker-compose-install-typecho/"><strong>https://iwanlab.com/docker-compose-install-typecho/</strong></a></p>
+<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p><a href="https://iwanlab.com/tag/typecho/">Typecho</a>时隔多年，终于在今年更新了新版本，非常轻量的一款博客，整个源文件就<code>608K</code></p>
+<p>正常来说，这个是不适合用Docker来部署的，因为会把一个轻量的东西弄得很“重”，但是，谁叫我们懒呢，用Docker部署，维护和搬家方便呀，而且部署也简单，所以今天就索性来折腾一下吧。</p>
+<h2 id="2-搭建方式"><a href="#2-搭建方式" class="headerlink" title="2. 搭建方式"></a>2. 搭建方式</h2><h3 id="2-1-搭建"><a href="#2-1-搭建" class="headerlink" title="2.1 搭建"></a>2.1 搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i # 切换到root用户</span><br><span class="line"></span><br><span class="line">apt update -y  # 升级packages</span><br><span class="line"></span><br><span class="line">apt install wget curl sudo vim git  # Debian系统比较干净，安装常用的软件</span><br></pre></td></tr></table></figure>
+
+<p>创建一下安装的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/typecho</span><br><span class="line"></span><br><span class="line">cd /root/data/typecho</span><br></pre></td></tr></table></figure>
+
+<p>先创建几个文件。</p>
+<h4 id="2-1-1-mysql"><a href="#2-1-1-mysql" class="headerlink" title="2.1.1 mysql"></a>2.1.1 mysql</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">nano mysql.env</span><br></pre></td></tr></table></figure>
+
+<p>填入下面的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MYSQL_ROOT_PASSWORD=123</span><br><span class="line">MYSQL_DATABASE=typechoasdjklk</span><br><span class="line">MYSQL_USER=lisds</span><br><span class="line">MYSQL_PASSWORD=123</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-php-fpm"><a href="#2-1-2-php-fpm" class="headerlink" title="2.1.2 php-fpm"></a>2.1.2 php-fpm</h4><p>其中 php 目录为 <code>php-fpm</code> 的 Dockerfile，在官方镜像的基础上，添加了 <code>PDO_MYSQL</code>（如果使用 MySQL 作为 Typecho 的数据库，则需安装此扩展），并设置 <code>buffer</code> 为 <code>4kb</code>，即一个内存页。同时设置了时区为<code>RPC</code>，来源于issue: <a href="https://github.com/typecho/typecho/issues/1090">https://github.com/typecho/typecho/issues/1090</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">mkdir php</span><br><span class="line"></span><br><span class="line">cd php</span><br><span class="line"></span><br><span class="line">nano Dockerfile</span><br></pre></td></tr></table></figure>
+
+<p>输入下面的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM php:7.3.29-fpm</span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; docker-php-ext-install pdo_mysql \</span><br><span class="line">    &amp;&amp; echo &quot;output_buffering = 4096&quot; &gt; /usr/local/etc/php/conf.d/php.ini \</span><br><span class="line">    &amp;&amp; echo &quot;date.timezone = PRC&quot; &gt;&gt; /usr/local/etc/php/conf.d/php.ini</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-3-nginx"><a href="#2-1-3-nginx" class="headerlink" title="2.1.3 nginx"></a>2.1.3 nginx</h4><p>nginx 的配置要注意的是需要有<code>rewrite</code> 规则（后续typecho后台有一个地址重写功能），如果需要指定域名的话，需要写 <code>server_name</code> 字段。这里我并没有指定<code>443</code>端口，因为我们后面用到了反向代理。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">mkdir nginx</span><br><span class="line"></span><br><span class="line">cd nginx</span><br><span class="line"></span><br><span class="line">nano default.conf</span><br></pre></td></tr></table></figure>
+
+<p>输入下面的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    root /var/www/html;</span><br><span class="line">    index index.php;</span><br><span class="line"></span><br><span class="line">    access_log /var/log/nginx/typecho_access.log main;</span><br><span class="line">    if (!-e $request_filename) &#123;</span><br><span class="line">        rewrite ^(.*)$ /index.php$1 last;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        index index.html index.htm index.php;</span><br><span class="line"></span><br><span class="line">        if (!-e $request_filename) &#123;</span><br><span class="line">            rewrite . /index.php last;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php(.*)$ &#123;</span><br><span class="line">        fastcgi_pass   php:9000;</span><br><span class="line">        fastcgi_index  index.php;</span><br><span class="line">        fastcgi_param  PATH_TRANSLATED $document_root$fastcgi_path_info;</span><br><span class="line">        fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;</span><br><span class="line">        fastcgi_param  PATH_INFO  $fastcgi_path_info;</span><br><span class="line">        fastcgi_param  SCRIPT_NAME $fastcgi_script_name;</span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下载源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho/typecho</span><br><span class="line"></span><br><span class="line">wget https://github.com/typecho/typecho/releases/download/v1.2.0/typecho.zip</span><br><span class="line"></span><br><span class="line">apt install zip -y </span><br><span class="line"></span><br><span class="line">unzip typecho.zip</span><br></pre></td></tr></table></figure>
+
+<p>创建<code>docker-compose</code>文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho</span><br><span class="line"></span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p><code>docker-compose.yml</code>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    image: nginx</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9333:80&quot;    # 左边可以改成任意没使用的端口</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    volumes:</span><br><span class="line">      - ./typecho:/var/www/html</span><br><span class="line">      - ./nginx:/etc/nginx/conf.d</span><br><span class="line">      - ./logs:/var/log/nginx</span><br><span class="line">    depends_on:</span><br><span class="line">      - php</span><br><span class="line">    networks:</span><br><span class="line">      - web</span><br><span class="line"></span><br><span class="line">  php:</span><br><span class="line">    build: php</span><br><span class="line">    restart: always</span><br><span class="line">    expose:</span><br><span class="line">      - &quot;9000&quot;       # 不暴露公网，故没有写9000:9000</span><br><span class="line">    volumes:</span><br><span class="line">      - ./typecho:/var/www/html</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    depends_on:</span><br><span class="line">      - mysql</span><br><span class="line">    networks:</span><br><span class="line">      - web</span><br><span class="line"></span><br><span class="line">  mysql:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - TZ=Asia/Shanghai</span><br><span class="line">    expose:</span><br><span class="line">      - &quot;3306&quot;  # 不暴露公网，故没有写3306:3306</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql/data:/var/lib/mysql</span><br><span class="line">      - ./mysql/logs:/var/log/mysql</span><br><span class="line">      - ./mysql/conf:/etc/mysql/conf.d</span><br><span class="line">    env_file:</span><br><span class="line">      - mysql.env</span><br><span class="line">    networks:</span><br><span class="line">      - web</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  web:</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：如果VPS的内存比较小 ，推荐设置一下SWAP，一般为内存的1-1.5倍即可～</p>
+</blockquote>
+<p>设置SWAP可以用脚本:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; clear &amp;&amp; ./box.sh</span><br></pre></td></tr></table></figure>
+
+<p>没问题的话，<code>ctrl+x</code>退出，按<code>y</code>保存，<code>enter</code>确认。</p>
+<p>查看端口是否被占用，输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsof -i:9333  #查看8223端口是否被占用，如果被占用，重新自定义一个端口</span><br></pre></td></tr></table></figure>
+
+<p>如果出现：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-bash: lsof: command not found</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install lsof  #安装lsof</span><br></pre></td></tr></table></figure>
+
+<p>如果端口没有被占用，可以运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d </span><br></pre></td></tr></table></figure>
+
+<p>访问：&#96;http:服务ip:9333 即可。</p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>1、不知道服务器IP，可以直接在命令行输入：<code>curl ip.sb</code>，会显示当前服务器的IP。</p>
+<p>2、遇到访问不了的情况，请在宝塔面板的防火墙和服务商的后台防火墙里打开对应端口。</p>
+</blockquote>
+<h3 id="2-2-更新"><a href="#2-2-更新" class="headerlink" title="2.2 更新"></a>2.2 更新</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /root/data/typecho  # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose pull    # 拉取最新的镜像</span><br><span class="line"></span><br><span class="line">docker-compose up -d   # 重新更新当前镜像</span><br></pre></td></tr></table></figure>
+
+<p>利用Docker-compose搭建的应用，更新非常容易～</p>
+<h3 id="2-3-卸载"><a href="#2-3-卸载" class="headerlink" title="2.3 卸载"></a>2.3 卸载</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i  # 切换到root</span><br><span class="line"></span><br><span class="line">cd /root/data/typecho # 进入docker-compose所在的文件夹</span><br><span class="line"></span><br><span class="line">docker-compose down    # 停止容器，此时不会删除映射到本地的数据</span><br><span class="line"></span><br><span class="line">cd ~</span><br><span class="line"></span><br><span class="line">rm -rf /root/data/typecho  # 完全删除映射到本地的数据</span><br></pre></td></tr></table></figure>
+
+<p>利用Docker-compose搭建的应用，删除也非常容易～</p>
+<h2 id="3-反向代理"><a href="#3-反向代理" class="headerlink" title="3. 反向代理"></a>3. 反向代理</h2><h3 id="3-1-利用Nginx-Proxy-Manager"><a href="#3-1-利用Nginx-Proxy-Manager" class="headerlink" title="3.1 利用Nginx Proxy Manager"></a>3.1 利用Nginx Proxy Manager</h3><p>在添加反向代理之前，确保你已经完成了域名解析，登陆Nginx Proxy Manager</p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>Nginx Proxy Manager（以下简称NPM）会用到<code>80</code>、<code>443</code>端口，所以本机不能占用（比如原来就有Nginx）</p>
+<p>注意填写对应的<code>域名</code>、<code>IP</code>和<code>端口</code>，按文章来的话，应该是<code>8223</code></p>
+</blockquote>
+<p><strong>IP填写：</strong></p>
+<p>如果Nginx Proxy Manager和reader在同一台服务器上，可以在终端输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip addr show docker0</span><br></pre></td></tr></table></figure>
+
+<p>查看对应的Docker容器内部IP。</p>
+<p>否则直接填<code>docker所在的服务器IP</code>就行。</p>
+<p>完成之后，记得再次打开这个，把Force SSL再勾选上（小BUG）</p>
+<p>然后就可以用域名来安装访问了。</p>
+<h2 id="4-使用教程"><a href="#4-使用教程" class="headerlink" title="4. 使用教程"></a>4. 使用教程</h2><p><a href="https://img.laoda.de/i/2022/05/13/z6ntu3-0.webp"><img src="https://img.laoda.de/i/2022/05/13/z6ntu3-0.webp" alt="image-20220513212747473"></a><br><a href="https://img.laoda.de/i/2022/05/13/z6jcr6-0.webp"><img src="https://img.laoda.de/i/2022/05/13/z6jcr6-0.webp" alt="image-20220513212726407"></a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /root/data/docker_data/typecho/typecho</span><br><span class="line"></span><br><span class="line">nano config.inc.php</span><br></pre></td></tr></table></figure>
+
+<p>填入上面的内容，然后点击继续安装即可。</p>
+<h3 id="4-1-地址重写功能"><a href="#4-1-地址重写功能" class="headerlink" title="4.1 地址重写功能"></a>4.1 地址重写功能</h3><p><a href="https://img.laoda.de/i/2022/05/07/yy5ted-0.webp"><img src="https://img.laoda.de/i/2022/05/07/yy5ted-0.webp" alt="image-20220507211319272"></a></p>
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人云盘-nextcloud</title>
     <url>/posts/8093261a/</url>
     <content><![CDATA[<p>创建一下安装的目录：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -647,7 +647,7 @@
       </tags>
   </entry>
   <entry>
-    <title>uptime 网站监控搭建</title>
+    <title>网站监控-Uptime Kuma</title>
     <url>/posts/2023caab/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/uptime </span><br><span class="line">cd /root/data/docker_data/uptime </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
 
@@ -656,39 +656,6 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.3&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  uptime-kuma:</span><br><span class="line">    image: louislam/uptime-kuma</span><br><span class="line">    container_name: uptime-kuma</span><br><span class="line">    volumes:</span><br><span class="line">      - ./uptime-kuma:/app/data</span><br><span class="line">    ports:</span><br><span class="line">      - 3001:3001     # 左边的3001可以自己调整端口号，右边的3000不要改</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>监控</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网站流量统计工具 -Plausible</title>
-    <url>/posts/a0a38a3f/</url>
-    <content><![CDATA[<p>创建一下安装的目录：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">git clone https://github.com/plausible/hosting</span><br><span class="line"></span><br><span class="line">cd hosting</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">version: &quot;3.3&quot;</span><br><span class="line">services:</span><br><span class="line">  mail:</span><br><span class="line">    image: bytemark/smtp</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">  plausible_db:</span><br><span class="line">    # supported versions are 12, 13, and 14</span><br><span class="line">    image: postgres:14-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db-data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line">  plausible_events_db:</span><br><span class="line">    image: clickhouse/clickhouse-server:23.3.7.5-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./event-data:/var/lib/clickhouse</span><br><span class="line">      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro</span><br><span class="line">      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro</span><br><span class="line">    ulimits:</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line"></span><br><span class="line">  plausible:</span><br><span class="line">    image: plausible/analytics:v2.0</span><br><span class="line">    restart: always</span><br><span class="line">    command: sh -c &quot;sleep 10 &amp;&amp; /entrypoint.sh db createdb &amp;&amp; /entrypoint.sh db migrate &amp;&amp; /entrypoint.sh run&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - plausible_db</span><br><span class="line">      - plausible_events_db</span><br><span class="line">      - mail</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:8000     # 左边端口号随便改</span><br><span class="line">    env_file:</span><br><span class="line">      - plausible-conf.env</span><br></pre></td></tr></table></figure>
-
-<p>生成密钥：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rand -base64 64 | tr -d &#x27;\n&#x27; ; echo</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim plausible-conf.env</span><br></pre></td></tr></table></figure>
-
-
-<p>BASE_URL&#x3D;<a href="https://analytics.baiyunweb.top/">https://analytics.baiyunweb.top</a><br>(密钥)SECRET_KEY_BASE&#x3D;&#x2F;akTJvpBZRvFr68&#x2F;3CobwuSy6p9ig7fjuIgLWVfqDJLLokgJme61&#x2F;8uKxw9qQuW+L1G897SweRf4Q9J5c&#x2F;ifFA&#x3D;&#x3D;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-
-
-
 
 ]]></content>
       <categories>
@@ -944,6 +911,39 @@
       <tags>
         <tag>docker</tag>
         <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网站流量统计——Plausible</title>
+    <url>/posts/a0a38a3f/</url>
+    <content><![CDATA[<p>创建一下安装的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">git clone https://github.com/plausible/hosting</span><br><span class="line"></span><br><span class="line">cd hosting</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">version: &quot;3.3&quot;</span><br><span class="line">services:</span><br><span class="line">  mail:</span><br><span class="line">    image: bytemark/smtp</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">  plausible_db:</span><br><span class="line">    # supported versions are 12, 13, and 14</span><br><span class="line">    image: postgres:14-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db-data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line">  plausible_events_db:</span><br><span class="line">    image: clickhouse/clickhouse-server:23.3.7.5-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./event-data:/var/lib/clickhouse</span><br><span class="line">      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro</span><br><span class="line">      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro</span><br><span class="line">    ulimits:</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line"></span><br><span class="line">  plausible:</span><br><span class="line">    image: plausible/analytics:v2.0</span><br><span class="line">    restart: always</span><br><span class="line">    command: sh -c &quot;sleep 10 &amp;&amp; /entrypoint.sh db createdb &amp;&amp; /entrypoint.sh db migrate &amp;&amp; /entrypoint.sh run&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - plausible_db</span><br><span class="line">      - plausible_events_db</span><br><span class="line">      - mail</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:8000     # 左边端口号随便改</span><br><span class="line">    env_file:</span><br><span class="line">      - plausible-conf.env</span><br></pre></td></tr></table></figure>
+
+<p>生成密钥：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rand -base64 64 | tr -d &#x27;\n&#x27; ; echo</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim plausible-conf.env</span><br></pre></td></tr></table></figure>
+
+
+<p>BASE_URL&#x3D;<a href="https://analytics.baiyunweb.top/">https://analytics.baiyunweb.top</a><br>(密钥)SECRET_KEY_BASE&#x3D;&#x2F;akTJvpBZRvFr68&#x2F;3CobwuSy6p9ig7fjuIgLWVfqDJLLokgJme61&#x2F;8uKxw9qQuW+L1G897SweRf4Q9J5c&#x2F;ifFA&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>监控</tag>
       </tags>
   </entry>
   <entry>
