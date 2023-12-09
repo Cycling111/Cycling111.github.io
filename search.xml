@@ -162,20 +162,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker compose-命令</title>
-    <url>/posts/6c40434b/</url>
-    <content><![CDATA[<hr>
-<p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker and docker compose安装</title>
     <url>/posts/e817ffda/</url>
     <content><![CDATA[<h2 id="1、升级-packages"><a href="#1、升级-packages" class="headerlink" title="1、升级 packages"></a>1、升级 packages</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i # 切换到 root 用户  </span><br><span class="line">  </span><br><span class="line">apt update -y  # 升级 packages  </span><br><span class="line">  </span><br><span class="line">apt install wget curl sudo vim git -y  # Debian 系统比较干净，安装常用的软件 </span><br></pre></td></tr></table></figure>
@@ -236,6 +222,20 @@
       <tags>
         <tag>docker</tag>
         <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker compose-命令</title>
+    <url>/posts/6c40434b/</url>
+    <content><![CDATA[<hr>
+<p>docker-compose命令–help                                 # 获得一个命令的帮助<br>docker-compose up -d nginx                               # 构建启动nignx容器<br>docker-compose exec nginx bash                         # 登录到nginx容器中<br>docker-compose down                                            # 此命令将会停止u叩命令所启动的容器，并移除网络<br>docker-compose ps                                               # 列出项目中目前的所有容器<br>docker-compose restart nginx                              # 重新启动nginx容器<br>docker-compose build nginx                                 # 构建镜像<br>docker-compose build –no-cache nginx               # 不带缓存的构建<br>docker-compose top                                                # 查看各个服务容器内运行的进程<br>docker-compose logs-f nginx                                 # 查看nginx的实时日志<br>docker-compose images                                            # 列出Compose文件包含的镜像<br>docker-compose config                             # 验证文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。<br>docker-compose events –json nginx                     # 以json的形式输出nginx的docker日志<br>docker-compose pause nginx                               # 暂停nignx容器<br>docker-compose unpause nginx                          # 恢复ningx容器<br>docker-compose rm nginx                                       # 删除容器(删除前必须关闭容器，执行stop)<br>docker-compose stop nginx                                    # 停止nignx容器<br>docker-compose start nginx                                         # 启动nignx容器<br>docker-compose restart nginx                                        # 重启项目中的nignx容器<br>docker-compose run –no-deps –rm php-fpm php -v     # 在php-fpm中不启动关联容器，并容器执行php-v执行完成后删除容器</p>
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>命令</tag>
       </tags>
   </entry>
   <entry>
@@ -534,6 +534,25 @@
       </tags>
   </entry>
   <entry>
+    <title>个人云盘-nextcloud</title>
+    <url>/posts/8093261a/</url>
+    <content><![CDATA[<p>创建一下安装的目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>cloud storage</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>个人网站-WordPress</title>
     <url>/posts/e779e2ee/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/wordpress </span><br><span class="line">cd /root/data/docker_data/wordpress </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
@@ -556,107 +575,29 @@
       </tags>
   </entry>
   <entry>
-    <title>网站监控-Uptime Kuma</title>
-    <url>/posts/2023caab/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/uptime </span><br><span class="line">cd /root/data/docker_data/uptime </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-
-<p>docker-compose.yml填入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.3&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  uptime-kuma:</span><br><span class="line">    image: louislam/uptime-kuma</span><br><span class="line">    container_name: uptime-kuma</span><br><span class="line">    volumes:</span><br><span class="line">      - ./uptime-kuma:/app/data</span><br><span class="line">    ports:</span><br><span class="line">      - 3001:3001     # 左边的3001可以自己调整端口号，右边的3000不要改</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>监控</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>个人云盘-nextcloud</title>
-    <url>/posts/8093261a/</url>
+    <title>网站流量统计——Plausible</title>
+    <url>/posts/a0a38a3f/</url>
     <content><![CDATA[<p>创建一下安装的目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /root/data/aio-nextcloud</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /root/data/aio-nextcloud</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">git clone https://github.com/plausible/hosting</span><br><span class="line"></span><br><span class="line">cd hosting</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
 
-<p>以下是咕咕修改的，可以看看有啥不一样（具体见视频）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line"> nextcloud_aio_mastercontainer:</span><br><span class="line">   name: nextcloud_aio_mastercontainer</span><br><span class="line">services:</span><br><span class="line"> nextcloud:</span><br><span class="line">   image: nextcloud/all-in-one:latest</span><br><span class="line">   restart: unless-stopped</span><br><span class="line">   container_name: nextcloud-aio-mastercontainer</span><br><span class="line">   volumes:</span><br><span class="line">     - nextcloud_aio_mastercontainer:/mnt/docker-aio-config</span><br><span class="line">     - /var/run/docker.sock:/var/run/docker.sock:ro</span><br><span class="line">   ports:</span><br><span class="line">     - 7070:8080 # change the port on the left side if it&#x27;s already in use on your host system.</span><br><span class="line">   environment:</span><br><span class="line">     - APACHE_PORT=11000  # change this port number if 11000 is already in use on your host system.</span><br><span class="line">     - APACHE_DISABLE_REWRITE_IP=1</span><br><span class="line">     - NEXTCLOUD_TRUSTED_DOMAINS=pan.gugu.ovh 31.22.109.18 # Your domain name + proxy host IP</span><br><span class="line">     - TRUSTED_PROXIES=31.22.109.18 # proxy host IP</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">version: &quot;3.3&quot;</span><br><span class="line">services:</span><br><span class="line">  mail:</span><br><span class="line">    image: bytemark/smtp</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">  plausible_db:</span><br><span class="line">    # supported versions are 12, 13, and 14</span><br><span class="line">    image: postgres:14-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db-data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line">  plausible_events_db:</span><br><span class="line">    image: clickhouse/clickhouse-server:23.3.7.5-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./event-data:/var/lib/clickhouse</span><br><span class="line">      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro</span><br><span class="line">      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro</span><br><span class="line">    ulimits:</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line"></span><br><span class="line">  plausible:</span><br><span class="line">    image: plausible/analytics:v2.0</span><br><span class="line">    restart: always</span><br><span class="line">    command: sh -c &quot;sleep 10 &amp;&amp; /entrypoint.sh db createdb &amp;&amp; /entrypoint.sh db migrate &amp;&amp; /entrypoint.sh run&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - plausible_db</span><br><span class="line">      - plausible_events_db</span><br><span class="line">      - mail</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:8000     # 左边端口号随便改</span><br><span class="line">    env_file:</span><br><span class="line">      - plausible-conf.env</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <categories>
-        <category>dockers</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>cloud storage</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于docker搭建监控系统&amp;日志收集</title>
-    <url>/posts/3b7989e0/</url>
-    <content><![CDATA[<h2 id="什么是Prometheus"><a href="#什么是Prometheus" class="headerlink" title="什么是Prometheus?"></a><strong>什么是Prometheus?</strong></h2><p>Prometheus是由SoundCloud开发的开源监控报警系统和时序列数据库(TSDB)。Prometheus使用Go语言开发，是Google BorgMon监控系统的开源版本。<br>2016年由Google发起Linux基金会旗下的原生云基金会(Cloud Native Computing Foundation), 将Prometheus纳入其下第二大开源项目。<br>Prometheus目前在开源社区相当活跃。<br>Prometheus和Heapster(Heapster是K8S的一个子项目，用于获取集群的性能数据。)相比功能更完善、更全面。Prometheus性能也足够支撑上万台规模的集群。</p>
-<p><strong>Prometheus的特点</strong></p>
-<ul>
-<li>多维度数据模型。</li>
-<li>灵活的查询语言。</li>
-<li>不依赖分布式存储，单个服务器节点是自主的。</li>
-<li>通过基于HTTP的pull方式采集时序数据。</li>
-<li>可以通过中间网关进行时序列数据推送。</li>
-<li>通过服务发现或者静态配置来发现目标服务对象。</li>
-<li>支持多种多样的图表和界面展示，比如Grafana等。<br><strong>监控系统架构图</strong></li>
-</ul>
-<p><img src="https://pic2.zhimg.com/80/v2-c4fda4a89b8a7d3006a5bd522bab04f9_720w.webp"></p>
-<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a><strong>拉取镜像</strong></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull prom/node-exporter</span><br><span class="line">docker pull prom/prometheus</span><br><span class="line">docker pull grafana/grafana       </span><br></pre></td></tr></table></figure>
+<p>生成密钥：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rand -base64 64 | tr -d &#x27;\n&#x27; ; echo</span><br></pre></td></tr></table></figure>
 
-<p><strong>启动node-exporter</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9100:9100 \</span><br><span class="line">  -v &quot;/proc:/host/proc:ro&quot; \</span><br><span class="line">  -v &quot;/sys:/host/sys:ro&quot; \</span><br><span class="line">  -v &quot;/:/rootfs:ro&quot; \</span><br><span class="line">  --net=&quot;host&quot; \</span><br><span class="line">  prom/node-exporter</span><br></pre></td></tr></table></figure>
 
-<p>访问<a href="https://link.zhihu.com/?target=http://ip:9100/metrics">http://ip:9100/metrics</a><br><strong>启动prometheus</strong></p>
-<p>新建目录prometheus，编辑配置文件prometheus.yml</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /opt/prometheus</span><br><span class="line">cd /opt/prometheus/</span><br><span class="line">vi prometheus.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim plausible-conf.env</span><br></pre></td></tr></table></figure>
+
+
+<p>BASE_URL&#x3D;<a href="https://analytics.baiyunweb.top/">https://analytics.baiyunweb.top</a><br>(密钥)SECRET_KEY_BASE&#x3D;&#x2F;akTJvpBZRvFr68&#x2F;3CobwuSy6p9ig7fjuIgLWVfqDJLLokgJme61&#x2F;8uKxw9qQuW+L1G897SweRf4Q9J5c&#x2F;ifFA&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
 
 
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:     60s</span><br><span class="line">  evaluation_interval: 60s</span><br><span class="line"> </span><br><span class="line">scrape_configs:</span><br><span class="line">  - job_name: prometheus</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9090&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: prometheus</span><br><span class="line"> </span><br><span class="line">  - job_name: linux</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9100&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: 96.8.121.168</span><br></pre></td></tr></table></figure>
 
-<p>注意：修改IP地址，这里的ip就是本机地址</p>
-<p><strong>启动prometheus</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run  -d \</span><br><span class="line">  -p 10050:9090 \</span><br><span class="line">  -v /opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  \</span><br><span class="line">  prom/prometheus</span><br></pre></td></tr></table></figure>
-
-
-
-
-<p>等待几秒查询端口状态</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -anpt</span><br></pre></td></tr></table></figure>
-
-<p>访问url</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://ip:10050/graph</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://pic3.zhimg.com/80/v2-10470180ee63b26709a88bf86500cb5a_720w.webp"></p>
-<p>访问targets，url如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://ip:10050/targets               </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://pic4.zhimg.com/80/v2-6e9b8fe9a29b46f3fb6fed1c756ca817_720w.webp"></p>
-<p><strong>启动grafana</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 10051:3000 \</span><br><span class="line">--name=grafana \</span><br><span class="line">-e &quot;GF_SERVER_ROOT_URL=http://grafana.server.name&quot; \</span><br><span class="line">-e &quot;GF_SECURITY_ADMIN_PASSWORD=admin&quot; \</span><br><span class="line">grafana/grafana</span><br></pre></td></tr></table></figure>
-
-<p>访问首页</p>
-<p><a href="https://link.zhihu.com/?target=http://ip:10051/">http://ip:10051</a> admin admin</p>
-<p><img src="https://pic1.zhimg.com/80/v2-c2b7545a4acc4b583bca9fd3fca1d670_720w.webp"></p>
-<p>添加数据源</p>
-<p><img src="https://pic2.zhimg.com/80/v2-63aa46998d5176c434d3a443f1f3fad9_720w.webp"></p>
-<p><img src="https://pic3.zhimg.com/80/v2-1f124d2de0b7cf434cd8b51f3f4ed46e_720w.webp"></p>
-<p><strong>监测服务器负载配置</strong></p>
-<p>create-&gt;import填入8919模板引擎，选择prometheus数据源，就能加载出服务器负载到主页</p>
-<p><img src="https://pic1.zhimg.com/80/v2-8967bb5016ade21638fe604715482c5c_720w.webp"></p>
-<p>监控主页</p>
-<p><img src="https://pic2.zhimg.com/80/v2-56858eb5242d9310236663e1396c34e9_720w.webp"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:     60s</span><br><span class="line">  evaluation_interval: 60s</span><br><span class="line"></span><br><span class="line">scrape_configs:</span><br><span class="line"></span><br><span class="line">  - job_name: prometheus</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;localhost:9090&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: prometheus</span><br><span class="line"></span><br><span class="line">  - job_name: linux</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9100&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: localhost</span><br><span class="line">   #  - targets: [&#x27;ip:9100&#x27;]  </span><br><span class="line">   #这里添加targets，可以使用Prometheus监控其他装有node_exporter的节点，单节点则不需要</span><br><span class="line">   #    labels:</span><br><span class="line">   #      instance: 192.168.1.22</span><br><span class="line"></span><br><span class="line">  - job_name: cadvisor</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;172.17.0.6:8080&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: cAdvisor</span><br><span class="line"></span><br><span class="line">  - job_name: mysqld</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9104&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: mysql-exporter</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>注意：修改IP地址，这里的172.17.0. xx就是docker容器内的私网，需要自行查询:<code>:</code></p>
 ]]></content>
       <categories>
         <category>dockers</category>
@@ -914,28 +855,15 @@
       </tags>
   </entry>
   <entry>
-    <title>网站流量统计——Plausible</title>
-    <url>/posts/a0a38a3f/</url>
-    <content><![CDATA[<p>创建一下安装的目录：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">cd /root/data/docker_data/plausible</span><br><span class="line"></span><br><span class="line">git clone https://github.com/plausible/hosting</span><br><span class="line"></span><br><span class="line">cd hosting</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">version: &quot;3.3&quot;</span><br><span class="line">services:</span><br><span class="line">  mail:</span><br><span class="line">    image: bytemark/smtp</span><br><span class="line">    restart: always</span><br><span class="line"></span><br><span class="line">  plausible_db:</span><br><span class="line">    # supported versions are 12, 13, and 14</span><br><span class="line">    image: postgres:14-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db-data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_PASSWORD=postgres</span><br><span class="line"></span><br><span class="line">  plausible_events_db:</span><br><span class="line">    image: clickhouse/clickhouse-server:23.3.7.5-alpine</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./event-data:/var/lib/clickhouse</span><br><span class="line">      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro</span><br><span class="line">      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro</span><br><span class="line">    ulimits:</span><br><span class="line">      nofile:</span><br><span class="line">        soft: 262144</span><br><span class="line">        hard: 262144</span><br><span class="line"></span><br><span class="line">  plausible:</span><br><span class="line">    image: plausible/analytics:v2.0</span><br><span class="line">    restart: always</span><br><span class="line">    command: sh -c &quot;sleep 10 &amp;&amp; /entrypoint.sh db createdb &amp;&amp; /entrypoint.sh db migrate &amp;&amp; /entrypoint.sh run&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - plausible_db</span><br><span class="line">      - plausible_events_db</span><br><span class="line">      - mail</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:8000     # 左边端口号随便改</span><br><span class="line">    env_file:</span><br><span class="line">      - plausible-conf.env</span><br></pre></td></tr></table></figure>
-
-<p>生成密钥：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl rand -base64 64 | tr -d &#x27;\n&#x27; ; echo</span><br></pre></td></tr></table></figure>
+    <title>网站监控-Uptime Kuma</title>
+    <url>/posts/2023caab/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /root/data/docker_data/uptime </span><br><span class="line">cd /root/data/docker_data/uptime </span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim plausible-conf.env</span><br></pre></td></tr></table></figure>
+<p>docker-compose.yml填入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;3.3&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  uptime-kuma:</span><br><span class="line">    image: louislam/uptime-kuma</span><br><span class="line">    container_name: uptime-kuma</span><br><span class="line">    volumes:</span><br><span class="line">      - ./uptime-kuma:/app/data</span><br><span class="line">    ports:</span><br><span class="line">      - 3001:3001     # 左边的3001可以自己调整端口号，右边的3000不要改</span><br></pre></td></tr></table></figure>
 
-
-<p>BASE_URL&#x3D;<a href="https://analytics.baiyunweb.top/">https://analytics.baiyunweb.top</a><br>(密钥)SECRET_KEY_BASE&#x3D;&#x2F;akTJvpBZRvFr68&#x2F;3CobwuSy6p9ig7fjuIgLWVfqDJLLokgJme61&#x2F;8uKxw9qQuW+L1G897SweRf4Q9J5c&#x2F;ifFA&#x3D;&#x3D;</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-
-
-
 
 ]]></content>
       <categories>
@@ -965,6 +893,78 @@
       <tags>
         <tag>docker</tag>
         <tag>可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于docker搭建监控系统&amp;日志收集</title>
+    <url>/posts/3b7989e0/</url>
+    <content><![CDATA[<h2 id="什么是Prometheus"><a href="#什么是Prometheus" class="headerlink" title="什么是Prometheus?"></a><strong>什么是Prometheus?</strong></h2><p>Prometheus是由SoundCloud开发的开源监控报警系统和时序列数据库(TSDB)。Prometheus使用Go语言开发，是Google BorgMon监控系统的开源版本。<br>2016年由Google发起Linux基金会旗下的原生云基金会(Cloud Native Computing Foundation), 将Prometheus纳入其下第二大开源项目。<br>Prometheus目前在开源社区相当活跃。<br>Prometheus和Heapster(Heapster是K8S的一个子项目，用于获取集群的性能数据。)相比功能更完善、更全面。Prometheus性能也足够支撑上万台规模的集群。</p>
+<p><strong>Prometheus的特点</strong></p>
+<ul>
+<li>多维度数据模型。</li>
+<li>灵活的查询语言。</li>
+<li>不依赖分布式存储，单个服务器节点是自主的。</li>
+<li>通过基于HTTP的pull方式采集时序数据。</li>
+<li>可以通过中间网关进行时序列数据推送。</li>
+<li>通过服务发现或者静态配置来发现目标服务对象。</li>
+<li>支持多种多样的图表和界面展示，比如Grafana等。<br><strong>监控系统架构图</strong></li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-c4fda4a89b8a7d3006a5bd522bab04f9_720w.webp"></p>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a><strong>拉取镜像</strong></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull prom/node-exporter</span><br><span class="line">docker pull prom/prometheus</span><br><span class="line">docker pull grafana/grafana       </span><br></pre></td></tr></table></figure>
+
+<p><strong>启动node-exporter</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 9100:9100 \</span><br><span class="line">  -v &quot;/proc:/host/proc:ro&quot; \</span><br><span class="line">  -v &quot;/sys:/host/sys:ro&quot; \</span><br><span class="line">  -v &quot;/:/rootfs:ro&quot; \</span><br><span class="line">  --net=&quot;host&quot; \</span><br><span class="line">  prom/node-exporter</span><br></pre></td></tr></table></figure>
+
+<p>访问<a href="https://link.zhihu.com/?target=http://ip:9100/metrics">http://ip:9100/metrics</a><br><strong>启动prometheus</strong></p>
+<p>新建目录prometheus，编辑配置文件prometheus.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /opt/prometheus</span><br><span class="line">cd /opt/prometheus/</span><br><span class="line">vi prometheus.yml</span><br></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:     60s</span><br><span class="line">  evaluation_interval: 60s</span><br><span class="line"> </span><br><span class="line">scrape_configs:</span><br><span class="line">  - job_name: prometheus</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9090&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: prometheus</span><br><span class="line"> </span><br><span class="line">  - job_name: linux</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9100&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: 96.8.121.168</span><br></pre></td></tr></table></figure>
+
+<p>注意：修改IP地址，这里的ip就是本机地址</p>
+<p><strong>启动prometheus</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run  -d \</span><br><span class="line">  -p 10050:9090 \</span><br><span class="line">  -v /opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  \</span><br><span class="line">  prom/prometheus</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>等待几秒查询端口状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -anpt</span><br></pre></td></tr></table></figure>
+
+<p>访问url</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://ip:10050/graph</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-10470180ee63b26709a88bf86500cb5a_720w.webp"></p>
+<p>访问targets，url如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://ip:10050/targets               </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic4.zhimg.com/80/v2-6e9b8fe9a29b46f3fb6fed1c756ca817_720w.webp"></p>
+<p><strong>启动grafana</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 10051:3000 \</span><br><span class="line">--name=grafana \</span><br><span class="line">-e &quot;GF_SERVER_ROOT_URL=http://grafana.server.name&quot; \</span><br><span class="line">-e &quot;GF_SECURITY_ADMIN_PASSWORD=admin&quot; \</span><br><span class="line">grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<p>访问首页</p>
+<p><a href="https://link.zhihu.com/?target=http://ip:10051/">http://ip:10051</a> admin admin</p>
+<p><img src="https://pic1.zhimg.com/80/v2-c2b7545a4acc4b583bca9fd3fca1d670_720w.webp"></p>
+<p>添加数据源</p>
+<p><img src="https://pic2.zhimg.com/80/v2-63aa46998d5176c434d3a443f1f3fad9_720w.webp"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-1f124d2de0b7cf434cd8b51f3f4ed46e_720w.webp"></p>
+<p><strong>监测服务器负载配置</strong></p>
+<p>create-&gt;import填入8919模板引擎，选择prometheus数据源，就能加载出服务器负载到主页</p>
+<p><img src="https://pic1.zhimg.com/80/v2-8967bb5016ade21638fe604715482c5c_720w.webp"></p>
+<p>监控主页</p>
+<p><img src="https://pic2.zhimg.com/80/v2-56858eb5242d9310236663e1396c34e9_720w.webp"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:     60s</span><br><span class="line">  evaluation_interval: 60s</span><br><span class="line"></span><br><span class="line">scrape_configs:</span><br><span class="line"></span><br><span class="line">  - job_name: prometheus</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;localhost:9090&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: prometheus</span><br><span class="line"></span><br><span class="line">  - job_name: linux</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9100&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: localhost</span><br><span class="line">   #  - targets: [&#x27;ip:9100&#x27;]  </span><br><span class="line">   #这里添加targets，可以使用Prometheus监控其他装有node_exporter的节点，单节点则不需要</span><br><span class="line">   #    labels:</span><br><span class="line">   #      instance: 192.168.1.22</span><br><span class="line"></span><br><span class="line">  - job_name: cadvisor</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;172.17.0.6:8080&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: cAdvisor</span><br><span class="line"></span><br><span class="line">  - job_name: mysqld</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;96.8.121.168:9104&#x27;]</span><br><span class="line">        labels:</span><br><span class="line">          instance: mysql-exporter</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注意：修改IP地址，这里的172.17.0. xx就是docker容器内的私网，需要自行查询:<code>:</code></p>
+]]></content>
+      <categories>
+        <category>dockers</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>监控</tag>
       </tags>
   </entry>
 </search>
